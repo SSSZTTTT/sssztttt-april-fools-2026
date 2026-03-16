@@ -125,7 +125,6 @@
         #april-fools-notice {
             background-color: rgba(0, 152, 220, 0.1);
             border: 1px solid var(--rhodes-blue);
-            /* RTLとLTRでボーダー位置を変えないよう両端に設定 */
             border-left: 4px solid var(--rhodes-blue);
             border-right: 4px solid var(--rhodes-blue);
             color: #fff;
@@ -268,14 +267,27 @@
         }
         .stamp { border: 2px solid var(--alert-orange); color: var(--alert-orange); display: inline-block; padding: 4px 12px; font-weight: bold; margin: 15px 0 5px; letter-spacing: 2px; font-size: 0.8rem; }
 
+        /* === スマホ向けレイアウト調整 === */
         @media screen and (max-width: 600px) {
+            /* ヘッダーの余白を増やしてボタンと文字の被りを防ぐ */
+            header { padding-top: 65px; } 
+            
+            /* 言語切り替えボタンを中央に配置 */
+            .lang-switcher, 
+            body[dir="rtl"] .lang-switcher { 
+                left: 0; 
+                right: 0; 
+                justify-content: center; 
+                width: 100%;
+            }
+            .lang-btn { padding: 4px 10px; font-size: 0.8rem; }
+
             header h1 { font-size: 1.4rem; }
             .hero { padding: 60px 15px; background-attachment: scroll; background-position: center 25%; }
             .hero p { font-size: 0.9rem; }
             .alert-box { padding: 15px;}
             .carousel-card { flex: 0 0 90%; } 
             .carousel-btn { width: 30px; height: 30px; font-size: 1rem; }
-            .lang-btn { padding: 4px 8px; font-size: 0.75rem; }
         }
     </style>
 </head>
@@ -382,7 +394,6 @@
             banner: 'اداره اراضی سارگون',
             title: 'منطقه حفاظت‌شده آکاهوالا',
             heroSub: '// قلب سبز نفوذناپذیر ترا.',
-            // ペルシャ語のエイプリルフール表記（ロドス・アイランド所属ドクター各位〜）
             aprilFools: '⚠️ <strong>【خارج از طبقه‌بندی / به تمامی دکترهای رودز آیلند】</strong><br>این سایت یک پورتال خیالی برای دروغ اول آوریل است و هیچ ارتباطی با سازمان‌های واقعی یا تنظیمات رسمی بازی "آرکنایتس" ندارد.',
             alertTitle: 'هشدار به شهروندان: محیط خطرناک',
             alertText: 'این منطقه حفاظت شده طبیعی دارای محیط‌های بسیار فعال اوریجینیوم است. برای ایمنی شما، گردشگری عمومی و ورود غیرمجاز غیرنظامیان اکیداً <strong>ممنوع</strong> است. ورود فقط به پیام‌رسان‌های فاجعه مجاز و پرسنل تایید شده رودز آیلند محدود می‌شود.',
@@ -414,7 +425,6 @@
             banner: 'Sargon Territorial Administration',
             title: 'ACAHUALLA PRIMEVAL RESERVE',
             heroSub: '// The impenetrable green heart of Terra.',
-            // 英語のエイプリルフール表記
             aprilFools: '⚠️ <strong>【DECLASSIFIED / Attention Rhodes Island Doctors】</strong><br>This site is a fictional portal created for April Fool\'s Day. It is not affiliated with any real organizations or the official Arknights game.',
             alertTitle: 'PUBLIC ADVISORY: HAZARDOUS ENVIRONMENT',
             alertText: 'This natural reserve contains highly active Originium environments. For your safety, general tourism and unauthorized civilian access are strictly <strong>PROHIBITED</strong>. Entry is limited to licensed Catastrophe Messengers and certified Rhodes Island personnel only.',
@@ -495,7 +505,6 @@
             });
         }
 
-        // 初期言語設定（ペルシャ語）
         setLanguage('fa');
 
         document.querySelectorAll('.lang-btn').forEach(btn => {
