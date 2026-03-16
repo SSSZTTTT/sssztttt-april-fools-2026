@@ -6,7 +6,6 @@
     <title>Acahualla Primeval Reserve - Sargon Territorial Admin</title>
     <style>
         :root {
-            /* アークナイツUI風の配色 */
             --bg-dark: #121212;
             --bg-panel: #1e1e1e;
             --text-main: #d4d4d4;
@@ -36,6 +35,14 @@
             display: block;
         }
 
+        .sargon-sub {
+            font-family: 'Tahoma', 'Arial', sans-serif;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
         header {
             background-color: #080808;
             color: white;
@@ -45,7 +52,6 @@
             position: relative;
         }
 
-        /* ヘッダー上部の細い装飾ライン */
         header::before {
             content: '';
             position: absolute;
@@ -74,7 +80,6 @@
             color: white;
             padding: 100px 20px;
             text-align: center;
-            /* 背景画像（一旦仮のジャングル画像） */
             background-image: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.9)), url('https://drive.google.com/thumbnail?id=1MAO83-D97JncfT6a-olrg9ocAHbtK1kY&sz=w1200');
             background-size: cover;
             background-position: center;
@@ -118,7 +123,6 @@
             padding: 0;
         }
 
-        /* === アークナイツ風 セクションタイトル === */
         .section-title {
             border-left: 4px solid var(--rhodes-blue);
             padding-left: 15px;
@@ -134,7 +138,6 @@
             text-transform: uppercase;
         }
 
-        /* === カルーセル === */
         .carousel-container {
             width: 100%;
             margin-bottom: 40px; 
@@ -162,17 +165,19 @@
             border: 1px solid var(--border-line);
             position: relative;
         }
-        /* アークナイツUI風の画像装飾 */
+        
+        /* ペルシャ語を加えた機密タグ */
         .carousel-card::before {
-            content: 'CONFIDENTIAL';
+            content: 'محرمانه | CONFIDENTIAL';
             position: absolute;
             top: 10px; right: 10px;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0,0,0,0.8);
             color: var(--alert-orange);
-            font-size: 0.6rem;
-            padding: 2px 6px;
+            font-size: 0.65rem;
+            padding: 3px 8px;
             border: 1px solid var(--alert-orange);
             z-index: 2;
+            font-family: 'Tahoma', 'Courier New', monospace;
         }
         .carousel-card img { width: 100%; height: 220px; object-fit: cover; display: block; opacity: 0.7; filter: grayscale(30%); transition: 0.3s; }
         .carousel-card img:hover { opacity: 1; filter: grayscale(0%); }
@@ -203,7 +208,6 @@
         .prev-btn { left: -10px; }
         .next-btn { right: -10px; }
 
-        /* === グリッドレイアウト === */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .card { 
             background: var(--bg-panel); 
@@ -214,7 +218,7 @@
         }
         .card:hover { transform: translateY(-2px); border-top-color: var(--rhodes-blue); }
         .card h3 { color: #fff; border-bottom: 1px dashed var(--border-line); padding-bottom: 10px; margin-top: 0; font-weight: normal; font-size: 1.1rem; text-transform: uppercase;}
-        .card p { font-size: 0.9rem; color: #bbb; }
+        .card p { font-size: 0.85rem; color: #bbb; margin-bottom: 0; }
 
         .footer { 
             background-color: #050505; 
@@ -250,6 +254,7 @@
 </header>
 
 <div class="hero">
+    <span class="sargon-text" style="color: #fff; font-size: 1.2rem;" dir="rtl">قلب سبز نفوذناپذیر ترا</span>
     <p>// The impenetrable green heart of Terra.</p>
 </div>
 
@@ -288,23 +293,27 @@
         
         <div class="grid">
             <div class="card">
+                <span class="sargon-sub" dir="rtl">میدان نبرد تیاکاهو</span>
                 <h3>Sector A: Tiacauh Grounds</h3>
-                <p><strong>大酋長の試練場近郊：</strong>現在、ティアカウ部族間の「物理的対話（決闘）」が頻発しているため、調査員の立ち入りは推奨されません。部族間の抗争には不干渉を貫くこと。</p>
+                <p><strong>Vicinity of the Great Chief's Proving Grounds:</strong> Frequent "physical dialogues" (duels) among Tiacauh tribes are currently active. Investigator entry is not recommended. Strict non-interference in inter-tribal conflicts must be maintained.</p>
             </div>
             <div class="card">
+                <span class="sargon-sub" dir="rtl">عرشه بقایا</span>
                 <h3>Sector B: Relic Deck</h3>
-                <p><strong>『ビッグ・アグリー』残骸観測所：</strong>過去に稼働していた巨大機械の残骸。現在も一部の部族民が改修を試みているため、接近時は注意が必要です。</p>
+                <p><strong>"Big Ugly" Wreckage Observation Point:</strong> Remains of a previously active colossal machine. Some tribespeople are currently attempting modifications. Approach with extreme caution.</p>
             </div>
             <div class="card">
+                <span class="sargon-sub" dir="rtl">منطقه فعال جهش‌یافته</span>
                 <h3>Sector C: Active Zone</h3>
-                <p><strong>源石変異植物セクター：</strong>高濃度の活性源石によって変異した食虫植物群生地。防護服（クラス4以上）の着用が義務付けられています。</p>
+                <p><strong>Originium-Mutated Flora Sector:</strong> Colony of carnivorous plants mutated by high concentrations of Active Originium. Class-4 (or higher) protective gear is strictly mandated.</p>
             </div>
         </div>
     </section>
 </div>
 
 <div class="footer">
-    <p>TERRA YEAR 109X © Acahualla Preservation Committee | Assisted by Rhodes Island Ecological Dept.</p>
+    <span class="sargon-text" style="color: #555; font-size: 0.85rem;" dir="rtl">کمیته حفاظت از آکاهوالا</span>
+    <p>TERRA YEAR 109X © Acahualla Preservation Committee | Assisted by R.I. Ecological Dept.</p>
     <p>Originium Density: 0.38u/L | Threat Level: HAZARDOUS</p>
 </div>
 
