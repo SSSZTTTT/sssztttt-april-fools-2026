@@ -17,35 +17,57 @@
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            /* JSで言語ごとにフォントを切り替えます */
             background-color: var(--bg-dark);
             margin: 0;
             color: var(--text-main);
             line-height: 1.6;
+            transition: all 0.3s ease;
         }
 
-        .sargon-text {
-            font-family: 'Tahoma', 'Arial', sans-serif;
+        /* === 言語切り替えボタン === */
+        .lang-switcher {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            display: flex;
+            gap: 5px;
+            z-index: 100;
+        }
+        /* RTL時の配置調整 */
+        body[dir="rtl"] .lang-switcher {
+            right: auto;
+            left: 20px;
+        }
+
+        .lang-btn {
+            background: rgba(0,0,0,0.6);
+            border: 1px solid var(--alert-orange);
             color: var(--alert-orange);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            opacity: 0.8;
-            margin-bottom: 2px;
-            display: block;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .lang-btn.active, .lang-btn:hover {
+            background: var(--alert-orange);
+            color: #000;
         }
 
         .sargon-sub {
-            font-family: 'Tahoma', 'Arial', sans-serif;
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             display: block;
             margin-bottom: 5px;
+            font-weight: bold;
         }
 
         header {
             background-color: #080808;
             color: white;
-            padding: 25px 20px 20px;
+            padding: 35px 20px 20px;
             text-align: center;
             border-bottom: 3px solid var(--alert-orange);
             position: relative;
@@ -101,12 +123,28 @@
             padding: 20px;
         }
 
+        /* エイプリルフール用ネタばらしバナー */
+        #april-fools-notice {
+            display: none; /* デフォルトは非表示 */
+            background-color: rgba(0, 152, 220, 0.1);
+            border: 1px solid var(--rhodes-blue);
+            border-left: 5px solid var(--rhodes-blue);
+            color: #fff;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            backdrop-filter: blur(5px);
+        }
+
         .alert-box {
             background-color: rgba(245, 166, 35, 0.05);
             border: 1px solid rgba(245, 166, 35, 0.3);
+            /* RTLとLTRでボーダー位置を変えないよう両端に設定 */
             border-left: 4px solid var(--alert-orange);
+            border-right: 4px solid var(--alert-orange);
             padding: 20px;
-            margin: -40px auto 30px;
+            margin: -20px auto 30px;
             position: relative;
             box-shadow: 0 10px 30px rgba(0,0,0,0.8);
             backdrop-filter: blur(10px);
@@ -123,15 +161,15 @@
         }
 
         .section-title {
-            border-left: 4px solid var(--rhodes-blue);
-            padding-left: 15px;
+            border-bottom: 2px solid var(--border-line);
+            padding-bottom: 10px;
             margin-top: 40px;
             margin-bottom: 20px;
         }
         .section-title h2 {
             margin: 0;
             font-size: 1.4rem;
-            color: #fff;
+            color: var(--rhodes-blue);
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -165,24 +203,25 @@
             position: relative;
         }
         
-        .carousel-card::before {
-            content: 'نمایش عمومی | PUBLIC VIEW';
+        .carousel-tag {
             position: absolute;
-            top: 10px; right: 10px;
+            top: 10px; 
             background: rgba(0,0,0,0.8);
             color: var(--alert-orange);
             font-size: 0.65rem;
             padding: 3px 8px;
             border: 1px solid var(--alert-orange);
             z-index: 2;
-            font-family: 'Tahoma', 'Courier New', monospace;
         }
+        /* RTL/LTRでのタグ位置調整 */
+        body[dir="ltr"] .carousel-tag { right: 10px; }
+        body[dir="rtl"] .carousel-tag { left: 10px; }
+
         .carousel-card img { width: 100%; height: 220px; object-fit: cover; display: block; opacity: 0.7; filter: grayscale(30%); transition: 0.3s; }
         .carousel-card img:hover { opacity: 1; filter: grayscale(0%); }
         .carousel-card .caption { 
             padding: 12px 15px; font-size: 0.85rem; color: #fff; 
-            text-align: left; border-top: 2px solid var(--sargon-green); 
-            font-family: 'Courier New', Courier, monospace;
+            border-top: 2px solid var(--sargon-green); 
             background: #111;
         }
 
@@ -203,8 +242,11 @@
             backdrop-filter: blur(2px);
         }
         .carousel-btn:hover { background-color: var(--rhodes-blue); color: #fff; }
-        .prev-btn { left: -10px; }
-        .next-btn { right: -10px; }
+        /* RTL/LTRのボタン位置調整 */
+        body[dir="ltr"] .prev-btn { left: -10px; }
+        body[dir="ltr"] .next-btn { right: -10px; }
+        body[dir="rtl"] .prev-btn { right: -10px; transform: translateY(-50%) rotate(180deg); }
+        body[dir="rtl"] .next-btn { left: -10px; transform: translateY(-50%) rotate(180deg); }
 
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
         .card { 
@@ -226,7 +268,6 @@
             font-size: 0.75rem; 
             margin-top: 60px; 
             border-top: 1px solid #222; 
-            font-family: 'Courier New', Courier, monospace; 
             text-transform: uppercase;
         }
         .stamp { border: 2px solid var(--alert-orange); color: var(--alert-orange); display: inline-block; padding: 4px 12px; font-weight: bold; margin: 15px 0 5px; letter-spacing: 2px; font-size: 0.8rem; }
@@ -235,49 +276,69 @@
             header h1 { font-size: 1.4rem; }
             .hero { padding: 60px 15px; background-attachment: scroll; background-position: center 25%; }
             .hero p { font-size: 0.9rem; }
-            .alert-box { margin-top: -20px; padding: 15px;}
+            .alert-box { padding: 15px;}
             .carousel-card { flex: 0 0 90%; } 
             .carousel-btn { width: 30px; height: 30px; font-size: 1rem; }
-            .prev-btn { left: 5px; }
-            .next-btn { right: 5px; }
         }
     </style>
 </head>
-<body>
-
-<header>
-    <span class="sargon-text" dir="rtl">اداره اراضی سارگون</span>
-    <div class="gov-banner">Sargon Territorial Administration</div>
-    <h1>ACAHUALLA PRIMEVAL RESERVE</h1>
+<body dir="rtl"> <header>
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="fa">FA</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ja">JA</button>
+    </div>
+    <div class="gov-banner" data-i18n="banner">اداره اراضی سارگون</div>
+    <h1 data-i18n="title">منطقه حفاظت‌شده آکاهوالا</h1>
 </header>
 
 <div class="hero">
-    <span class="sargon-text" style="color: #fff; font-size: 1.2rem;" dir="rtl">قلب سبز نفوذناپذیر ترا</span>
-    <p>// The impenetrable green heart of Terra.</p>
+    <p data-i18n="heroSub">// قلب سبز نفوذناپذیر ترا.</p>
 </div>
 
 <div class="container">
+    
+    <div id="april-fools-notice"></div>
+
     <div class="alert-box">
-        <span class="sargon-text" dir="rtl">هشدار به شهروندان</span>
-        <h2>PUBLIC ADVISORY: HAZARDOUS ENVIRONMENT</h2>
-        <p>This natural reserve contains highly active Originium environments. For your safety, general tourism and unauthorized civilian access are strictly <strong>PROHIBITED</strong>. Entry is limited to licensed Catastrophe Messengers and certified Rhodes Island personnel only.</p>
-        <div class="stamp">CIVILIAN ACCESS RESTRICTED</div>
+        <h2 data-i18n="alertTitle">هشدار به شهروندان: محیط خطرناک</h2>
+        <p data-i18n="alertText">این منطقه حفاظت شده طبیعی دارای محیط‌های بسیار فعال اوریجینیوم است. برای ایمنی شما، گردشگری عمومی و ورود غیرمجاز غیرنظامیان اکیداً <strong>ممنوع</strong> است. ورود فقط به پیام‌رسان‌های فاجعه مجاز و پرسنل تایید شده رودز آیلند محدود می‌شود.</p>
+        <div class="stamp" data-i18n="alertStamp">ورود غیرنظامیان ممنوع</div>
     </div>
 
     <section>
         <div class="section-title">
-            <span class="sargon-text" dir="rtl">گالری عمومی</span>
-            <h2>Official Gallery</h2>
+            <h2 data-i18n="galleryTitle">گالری رسمی</h2>
         </div>
         
         <div class="carousel-container">
             <button class="carousel-btn prev-btn">❮</button>
             <div class="carousel" id="photoCarousel">
-                <div class="carousel-card"><img src="https://drive.google.com/thumbnail?id=1xvIqkqIPAKFC1JUuooqiflvsjwCAiwNS&sz=w800"><div class="caption">Native Fauna: Emerald deer</div></div>
-                <div class="carousel-card"><img src="https://drive.google.com/thumbnail?id=1VkYl5CUUkhbWBLQOHWdxQyapIBuY1NH2&sz=w800"><div class="caption">Scenic View: The Emerald River</div></div>
-                <div class="carousel-card"><img src="https://drive.google.com/thumbnail?id=1MR9eGLwHAr4Ot1dy2QLrlaHb2mLLCM5S&sz=w800"><div class="caption">Heritage Site: Sargon Ruins</div></div>
-                <div class="carousel-card"><img src="https://drive.google.com/thumbnail?id=1j98fzuj4-JEPG13u1HWPgc23i9nZhu_W&sz=w800"><div class="caption">Indigenous Culture: Tiacauh Warriors</div></div>
-                <div class="carousel-card"><img src="https://drive.google.com/thumbnail?id=1o_pI8UQMfNtnZyTaEaH0Y4992X51EWYr&sz=w800"><div class="caption">research institute: Sargon research institute</div></div>
+                <div class="carousel-card">
+                    <div class="carousel-tag" data-i18n="tag">نمایش عمومی</div>
+                    <img src="https://drive.google.com/thumbnail?id=1xvIqkqIPAKFC1JUuooqiflvsjwCAiwNS&sz=w800">
+                    <div class="caption" data-i18n="cap1">جانوران بومی: گوزن زمردی</div>
+                </div>
+                <div class="carousel-card">
+                    <div class="carousel-tag" data-i18n="tag">نمایش عمومی</div>
+                    <img src="https://drive.google.com/thumbnail?id=1VkYl5CUUkhbWBLQOHWdxQyapIBuY1NH2&sz=w800">
+                    <div class="caption" data-i18n="cap2">منظره زیبا: رودخانه زمرد</div>
+                </div>
+                <div class="carousel-card">
+                    <div class="carousel-tag" data-i18n="tag">نمایش عمومی</div>
+                    <img src="https://drive.google.com/thumbnail?id=1MR9eGLwHAr4Ot1dy2QLrlaHb2mLLCM5S&sz=w800">
+                    <div class="caption" data-i18n="cap3">سایت میراث: خرابه‌های سارگون</div>
+                </div>
+                <div class="carousel-card">
+                    <div class="carousel-tag" data-i18n="tag">نمایش عمومی</div>
+                    <img src="https://drive.google.com/thumbnail?id=1j98fzuj4-JEPG13u1HWPgc23i9nZhu_W&sz=w800">
+                    <div class="caption" data-i18n="cap4">فرهنگ بومی: جنگجویان تیاکاهو</div>
+                </div>
+                <div class="carousel-card">
+                    <div class="carousel-tag" data-i18n="tag">نمایش عمومی</div>
+                    <img src="https://drive.google.com/thumbnail?id=1o_pI8UQMfNtnZyTaEaH0Y4992X51EWYr&sz=w800">
+                    <div class="caption" data-i18n="cap5">موسسه تحقیقاتی: موسسه تحقیقاتی سارگون</div>
+                </div>
             </div>
             <button class="carousel-btn next-btn">❯</button>
         </div>
@@ -285,58 +346,206 @@
 
     <section>
         <div class="section-title">
-            <span class="sargon-text" dir="rtl">اطلاعات بازدیدکنندگان</span>
-            <h2>Visitor Information & Zones</h2>
+            <h2 data-i18n="infoTitle">اطلاعات بازدیدکنندگان و مناطق</h2>
         </div>
         
         <div class="grid">
             <div class="card">
-                <span class="sargon-sub" dir="rtl">منطقه فرهنگی تیاکاهو</span>
-                <h3>Zone A: Tiacauh Cultural Area</h3>
-                <p><strong>Tiacauh Tribal Reserve:</strong> Please respect the rich local tribal culture. It is currently the season of traditional "physical dialogue" (duels). Approaching or attempting contact with the tribes for tourism purposes is extremely dangerous.</p>
+                <span class="sargon-sub" data-i18n="zoneASub">منطقه فرهنگی تیاکاهو</span>
+                <h3 data-i18n="zoneATitle">منطقه الف: منطقه فرهنگی تیاکاهو</h3>
+                <p data-i18n="zoneAText"><strong>ذخیره‌گاه قبیله‌ای تیاکاهو:</strong> لطفاً به فرهنگ غنی قبیله‌ای محلی احترام بگذارید. در حال حاضر فصل "گفتگوی فیزیکی" (دوئل) سنتی است. نزدیک شدن به قبایل برای مقاصد گردشگری بسیار خطرناک است.</p>
             </div>
             <div class="card">
-                <span class="sargon-sub" dir="rtl">سایت میراث تاریخی</span>
-                <h3>Zone B: Historical Heritage Site</h3>
-                <p><strong>Historical Relic Reserve:</strong> Preservation area for the colossal machine of the past, "Big Ugly". Unauthorized removal of parts or attempts at modification will be severely punished under Sargon Cultural Protection Laws.</p>
+                <span class="sargon-sub" data-i18n="zoneBSub">سایت میراث تاریخی</span>
+                <h3 data-i18n="zoneBTitle">منطقه ب: سایت میراث تاریخی</h3>
+                <p data-i18n="zoneBText"><strong>ذخیره‌گاه آثار تاریخی:</strong> منطقه حفاظت برای ماشین عظیم الجثه گذشته، "بیگ آگلی". برداشتن غیرمجاز قطعات یا تلاش برای اصلاح، تحت قوانین حفاظت از فرهنگ سارگون به شدت مجازات خواهد شد.</p>
             </div>
             <div class="card">
-                <span class="sargon-sub" dir="rtl">منطقه حفاظت شده اکولوژیکی</span>
-                <h3>Zone C: Ecological Preservation</h3>
-                <p><strong>Ecological Preservation Area:</strong> Habitat for rare Originium-mutated flora. Due to high concentrations of active Originium radiation in the vicinity, all civilian nature tours are currently suspended indefinitely.</p>
+                <span class="sargon-sub" data-i18n="zoneCSub">حفاظت اکولوژیکی</span>
+                <h3 data-i18n="zoneCTitle">منطقه ج: حفاظت اکولوژیکی</h3>
+                <p data-i18n="zoneCText"><strong>منطقه حفاظت شده اکولوژیکی:</strong> زیستگاه گیاهان جهش‌یافته نادر اوریجینیوم. به دلیل غلظت بالای تشعشعات اوریجینیوم فعال در مجاورت، تمام تورهای طبیعت‌گردی غیرنظامی در حال حاضر به حالت تعلیق درآمده‌اند.</p>
             </div>
         </div>
     </section>
 </div>
 
 <div class="footer">
-    <span class="sargon-text" style="color: #555; font-size: 0.85rem;" dir="rtl">کمیته حفاظت از آکاهوالا</span>
-    <p>TERRA YEAR 109X © Acahualla Preservation Committee | Assisted by R.I. Ecological Dept.</p>
-    <p>Originium Density: 0.38u/L | Public Alert Level: ORANGE</p>
+    <span class="sargon-sub" style="color: #555;" data-i18n="foot1">کمیته حفاظت از آکاهوالا</span>
+    <p data-i18n="foot2">سال ترا 109X © کمیته حفاظت از آکاهوالا | با همکاری بخش اکولوژی رودز آیلند</p>
+    <p data-i18n="foot3">چگالی اوریجینیوم: 0.38u/L | سطح هشدار عمومی: نارنجی</p>
 </div>
 
 <script>
+    const i18nData = {
+        fa: {
+            dir: 'rtl',
+            font: "'Tahoma', 'Arial', sans-serif",
+            banner: 'اداره اراضی سارگون',
+            title: 'منطقه حفاظت‌شده آکاهوالا',
+            heroSub: '// قلب سبز نفوذناپذیر ترا.',
+            aprilFools: '',
+            alertTitle: 'هشدار به شهروندان: محیط خطرناک',
+            alertText: 'این منطقه حفاظت شده طبیعی دارای محیط‌های بسیار فعال اوریجینیوم است. برای ایمنی شما، گردشگری عمومی و ورود غیرمجاز غیرنظامیان اکیداً <strong>ممنوع</strong> است. ورود فقط به پیام‌رسان‌های فاجعه مجاز و پرسنل تایید شده رودز آیلند محدود می‌شود.',
+            alertStamp: 'ورود غیرنظامیان ممنوع',
+            galleryTitle: 'گالری رسمی',
+            cap1: 'جانوران بومی: گوزن زمردی',
+            cap2: 'منظره زیبا: رودخانه زمرد',
+            cap3: 'سایت میراث: خرابه‌های سارگون',
+            cap4: 'فرهنگ بومی: جنگجویان تیاکاهو',
+            cap5: 'موسسه تحقیقاتی: موسسه تحقیقاتی سارگون',
+            infoTitle: 'اطلاعات بازدیدکنندگان و مناطق',
+            zoneASub: 'منطقه فرهنگی تیاکاهو',
+            zoneATitle: 'منطقه الف: منطقه فرهنگی تیاکاهو',
+            zoneAText: '<strong>ذخیره‌گاه قبیله‌ای تیاکاهو:</strong> لطفاً به فرهنگ غنی قبیله‌ای محلی احترام بگذارید. در حال حاضر فصل "گفتگوی فیزیکی" (دوئل) سنتی است. نزدیک شدن به قبایل برای مقاصد گردشگری بسیار خطرناک است.',
+            zoneBSub: 'سایت میراث تاریخی',
+            zoneBTitle: 'منطقه ب: سایت میراث تاریخی',
+            zoneBText: '<strong>ذخیره‌گاه آثار تاریخی:</strong> منطقه حفاظت برای ماشین عظیم الجثه گذشته، "بیگ آگلی". برداشتن غیرمجاز قطعات یا تلاش برای اصلاح، تحت قوانین حفاظت از فرهنگ سارگون به شدت مجازات خواهد شد.',
+            zoneCSub: 'حفاظت اکولوژیکی',
+            zoneCTitle: 'منطقه ج: حفاظت اکولوژیکی',
+            zoneCText: '<strong>منطقه حفاظت شده اکولوژیکی:</strong> زیستگاه گیاهان جهش‌یافته نادر اوریجینیوم. به دلیل غلظت بالای تشعشعات اوریجینیوم فعال در مجاورت، تمام تورهای طبیعت‌گردی غیرنظامی در حال حاضر به حالت تعلیق درآمده‌اند.',
+            foot1: 'کمیته حفاظت از آکاهوالا',
+            foot2: 'سال ترا 109X © کمیته حفاظت از آکاهوالا | با همکاری بخش اکولوژی رودز آیلند',
+            foot3: 'چگالی اوریجینیوم: 0.38u/L | سطح هشدار عمومی: نارنجی',
+            tag: 'نمایش عمومی'
+        },
+        en: {
+            dir: 'ltr',
+            font: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            banner: 'Sargon Territorial Administration',
+            title: 'ACAHUALLA PRIMEVAL RESERVE',
+            heroSub: '// The impenetrable green heart of Terra.',
+            aprilFools: '',
+            alertTitle: 'PUBLIC ADVISORY: HAZARDOUS ENVIRONMENT',
+            alertText: 'This natural reserve contains highly active Originium environments. For your safety, general tourism and unauthorized civilian access are strictly <strong>PROHIBITED</strong>. Entry is limited to licensed Catastrophe Messengers and certified Rhodes Island personnel only.',
+            alertStamp: 'CIVILIAN ACCESS RESTRICTED',
+            galleryTitle: 'Official Gallery',
+            cap1: 'Native Fauna: Emerald deer',
+            cap2: 'Scenic View: The Emerald River',
+            cap3: 'Heritage Site: Sargon Ruins',
+            cap4: 'Indigenous Culture: Tiacauh Warriors',
+            cap5: 'Research Institute: Sargon Research Institute',
+            infoTitle: 'Visitor Information & Zones',
+            zoneASub: 'Tiacauh Cultural Area',
+            zoneATitle: 'Zone A: Tiacauh Cultural Area',
+            zoneAText: '<strong>Tiacauh Tribal Reserve:</strong> Please respect the rich local tribal culture. It is currently the season of traditional "physical dialogue" (duels). Approaching or attempting contact with the tribes for tourism purposes is extremely dangerous.',
+            zoneBSub: 'Historical Heritage Site',
+            zoneBTitle: 'Zone B: Historical Heritage Site',
+            zoneBText: '<strong>Historical Relic Reserve:</strong> Preservation area for the colossal machine of the past, "Big Ugly". Unauthorized removal of parts or attempts at modification will be severely punished under Sargon Cultural Protection Laws.',
+            zoneCSub: 'Ecological Preservation',
+            zoneCTitle: 'Zone C: Ecological Preservation',
+            zoneCText: '<strong>Ecological Preservation Area:</strong> Habitat for rare Originium-mutated flora. Due to high concentrations of active Originium radiation in the vicinity, all civilian nature tours are currently suspended indefinitely.',
+            foot1: 'Acahualla Preservation Committee',
+            foot2: 'TERRA YEAR 109X © Acahualla Preservation Committee | Assisted by R.I. Ecological Dept.',
+            foot3: 'Originium Density: 0.38u/L | Public Alert Level: ORANGE',
+            tag: 'PUBLIC VIEW'
+        },
+        ja: {
+            dir: 'ltr',
+            font: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+            banner: 'サルゴン領土管理局',
+            title: 'アカフラ原生保護区',
+            heroSub: '// テラの浸透不可能な緑の心臓',
+            aprilFools: '⚠️ <strong>【機密指定解除 / ロドス・アイランド所属ドクター各位】</strong><br>このサイトはエイプリルフール用の架空のポータルサイトです。実在の組織や、ゲーム「アークナイツ」の公式設定とは一切関係ありません。',
+            alertTitle: '市民への警告：高濃度汚染区域',
+            alertText: '当自然保護区には高濃度の活性源石環境が含まれています。皆様の安全のため、一般の観光や無許可の民間人の立ち入りは固く<strong>禁じられています</strong>。立ち入りは認可されたトランスポーターおよびロドス・アイランドの正規職員のみに限られます。',
+            alertStamp: '民間人立ち入り禁止',
+            galleryTitle: '公式ギャラリー',
+            cap1: '現地生物：エメラルド・ディア',
+            cap2: '風景：エメラルド川',
+            cap3: '遺産：サルゴン遺跡',
+            cap4: '現地文化：ティアカウの戦士',
+            cap5: '研究施設：サルゴン研究施設',
+            infoTitle: '訪問者情報と区画',
+            zoneASub: 'ティアカウ文化保護区',
+            zoneATitle: '区画A：ティアカウ文化保護区',
+            zoneAText: '<strong>ティアカウ部族保護区：</strong>現地の豊かな部族文化を尊重してください。現在、伝統的な「物理的対話（決闘）」の季節となっており、観光目的での部族への接近・接触は極めて危険です。',
+            zoneBSub: '歴史遺産保護区',
+            zoneBTitle: '区画B：歴史遺産保護区',
+            zoneBText: '<strong>歴史的遺物保護区：</strong>過去の巨大機械『ビッグ・アグリー』の保存エリアです。無断での部品の持ち帰りや改造の試みは、サルゴン文化財保護法により厳しく罰せられます。',
+            zoneCSub: '生態系保護区',
+            zoneCTitle: '区画C：生態系保護区',
+            zoneCText: '<strong>生態系保護区：</strong>希少な源石変異植物の群生地です。周辺は高濃度のオリジニウム放射線に覆われているため、民間向けの自然見学ツアーは現在すべて見合わせとなっております。',
+            foot1: 'アカフラ保全委員会',
+            foot2: 'テラ暦 109X © アカフラ保全委員会 | 協力：ロドス・アイランド環境調査室',
+            foot3: 'オリジニウム濃度: 0.38u/L | 一般警戒レベル: ORANGE',
+            tag: '公開展示'
+        }
+    };
+
     document.addEventListener('DOMContentLoaded', function() {
         const carousel = document.getElementById('photoCarousel');
         const prevBtn = document.querySelector('.prev-btn');
         const nextBtn = document.querySelector('.next-btn');
+
+        // 言語変更関数
+        function setLanguage(lang) {
+            // ボタンのアクティブ状態切り替え
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) btn.classList.add('active');
+            });
+
+            // RTL(右から左) / LTR(左から右) の切り替え
+            document.body.dir = i18nData[lang].dir;
+            document.body.style.fontFamily = i18nData[lang].font;
+
+            // テキストの入れ替え
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18nData[lang][key]) {
+                    el.innerHTML = i18nData[lang][key];
+                }
+            });
+
+            // 日本語時のみエイプリルフール表記を表示
+            const afNotice = document.getElementById('april-fools-notice');
+            if (lang === 'ja') {
+                afNotice.style.display = 'block';
+                afNotice.innerHTML = i18nData.ja.aprilFools;
+            } else {
+                afNotice.style.display = 'none';
+            }
+        }
+
+        // 初期言語設定（ペルシャ語）
+        setLanguage('fa');
+
+        // 言語ボタンのクリックイベント
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => setLanguage(e.target.dataset.lang));
+        });
+
+        // カルーセルのスクロール制御
         function getScrollAmount() {
             const card = document.querySelector('.carousel-card');
             return card ? card.offsetWidth + 15 : 300;
         }
+
         nextBtn.addEventListener('click', function() {
-            const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
-            if (Math.ceil(carousel.scrollLeft) >= maxScrollLeft - 5) {
-                carousel.scrollTo({ left: 0, behavior: 'smooth' });
+            // RTLの時はスクロール方向が逆転するため判定を調整
+            const isRTL = document.body.dir === 'rtl';
+            if(isRTL) {
+                carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
             } else {
-                carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+                const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+                if (Math.ceil(carousel.scrollLeft) >= maxScrollLeft - 5) {
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+                }
             }
         });
+
         prevBtn.addEventListener('click', function() {
-            if (Math.floor(carousel.scrollLeft) <= 5) {
-                carousel.scrollTo({ left: carousel.scrollWidth, behavior: 'smooth' });
+            const isRTL = document.body.dir === 'rtl';
+            if(isRTL) {
+                carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
             } else {
-                carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+                if (Math.floor(carousel.scrollLeft) <= 5) {
+                    carousel.scrollTo({ left: carousel.scrollWidth, behavior: 'smooth' });
+                } else {
+                    carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+                }
             }
         });
     });
