@@ -24,7 +24,6 @@
             line-height: 1.6;
         }
 
-        /* 古サルゴン語（ペルシャ語）用の装飾フォント設定 */
         .sargon-text {
             font-family: 'Tahoma', 'Arial', sans-serif;
             color: var(--alert-orange);
@@ -166,9 +165,8 @@
             position: relative;
         }
         
-        /* ペルシャ語を加えた機密タグ */
         .carousel-card::before {
-            content: 'محرمانه | CONFIDENTIAL';
+            content: 'نمایش عمومی | PUBLIC VIEW';
             position: absolute;
             top: 10px; right: 10px;
             background: rgba(0,0,0,0.8);
@@ -260,26 +258,26 @@
 
 <div class="container">
     <div class="alert-box">
-        <span class="sargon-text" dir="rtl">هشدار خطر: منطقه آلوده</span>
-        <h2>HAZARD WARNING: HIGH ORIGINIUM DENSITY</h2>
-        <p>This area contains highly active Originium environments. Entry without a registered Catastrophe Messenger or official Rhodes Island field clearance is strictly <strong>PROHIBITED</strong>. Acute Oripathy infection risk is severe.</p>
-        <div class="stamp">ACCESS RESTRICTED</div>
+        <span class="sargon-text" dir="rtl">هشدار به شهروندان</span>
+        <h2>PUBLIC ADVISORY: HAZARDOUS ENVIRONMENT</h2>
+        <p>This natural reserve contains highly active Originium environments. For your safety, general tourism and unauthorized civilian access are strictly <strong>PROHIBITED</strong>. Entry is limited to licensed Catastrophe Messengers and certified Rhodes Island personnel only.</p>
+        <div class="stamp">CIVILIAN ACCESS RESTRICTED</div>
     </div>
 
     <section>
         <div class="section-title">
-            <span class="sargon-text" dir="rtl">بایگانی طبقه‌بندی شده</span>
-            <h2>Visual Records</h2>
+            <span class="sargon-text" dir="rtl">گالری عمومی</span>
+            <h2>Official Gallery</h2>
         </div>
         
         <div class="carousel-container">
             <button class="carousel-btn prev-btn">❮</button>
             <div class="carousel" id="photoCarousel">
-                <div class="carousel-card"><img src="https://drive.google.com/thumbnail?id=1xvIqkqIPAKFC1JUuooqiflvsjwCAiwNS&sz=w800"><div class="caption">OBJ-01: Mutated Originium Slug</div></div>
-                <div class="carousel-card"><img src="https://drive.google.com/thumbnail?id=1VkYl5CUUkhbWBLQOHWdxQyapIBuY1NH2&sz=w800"><div class="caption">LOC-02: Acahualla Deep River</div></div>
-                <div class="carousel-card"><img src="https://drive.google.com/thumbnail?id=1MR9eGLwHAr4Ot1dy2QLrlaHb2mLLCM5S&sz=w800"><div class="caption">PER-03: Tiacauh Tribe Warrior</div></div>
-                <div class="carousel-card"><img src="https://drive.google.com/thumbnail?id=1j98fzuj4-JEPG13u1HWPgc23i9nZhu_W&sz=w800"><div class="caption">FAC-04: 'Big Ugly' Relic Site</div></div>
-                <div class="carousel-card"><img src="https://drive.google.com/thumbnail?id=1o_pI8UQMfNtnZyTaEaH0Y4992X51EWYr&sz=w800"><div class="caption">LOC-05: Sargon Ancient Ruins</div></div>
+                <div class="carousel-card"><img src="https://drive.google.com/thumbnail?id=1xvIqkqIPAKFC1JUuooqiflvsjwCAiwNS&sz=w800"><div class="caption">Native Fauna: Originium Slug</div></div>
+                <div class="carousel-card"><img src="https://drive.google.com/thumbnail?id=1VkYl5CUUkhbWBLQOHWdxQyapIBuY1NH2&sz=w800"><div class="caption">Scenic View: The Emerald River</div></div>
+                <div class="carousel-card"><img src="https://drive.google.com/thumbnail?id=1MR9eGLwHAr4Ot1dy2QLrlaHb2mLLCM5S&sz=w800"><div class="caption">Indigenous Culture: Tiacauh Warriors</div></div>
+                <div class="carousel-card"><img src="https://drive.google.com/thumbnail?id=1j98fzuj4-JEPG13u1HWPgc23i9nZhu_W&sz=w800"><div class="caption">Historical Landmark: The Metal Giant</div></div>
+                <div class="carousel-card"><img src="https://drive.google.com/thumbnail?id=1o_pI8UQMfNtnZyTaEaH0Y4992X51EWYr&sz=w800"><div class="caption">Heritage Site: Sargon Ruins</div></div>
             </div>
             <button class="carousel-btn next-btn">❯</button>
         </div>
@@ -287,25 +285,25 @@
 
     <section>
         <div class="section-title">
-            <span class="sargon-text" dir="rtl">بخش‌های رصد تعیین‌شده</span>
-            <h2>Observation Sectors</h2>
+            <span class="sargon-text" dir="rtl">اطلاعات بازدیدکنندگان</span>
+            <h2>Visitor Information & Zones</h2>
         </div>
         
         <div class="grid">
             <div class="card">
-                <span class="sargon-sub" dir="rtl">میدان نبرد تیاکاهو</span>
-                <h3>Sector A: Tiacauh Grounds</h3>
-                <p><strong>Vicinity of the Great Chief's Proving Grounds:</strong> Frequent "physical dialogues" (duels) among Tiacauh tribes are currently active. Investigator entry is not recommended. Strict non-interference in inter-tribal conflicts must be maintained.</p>
+                <span class="sargon-sub" dir="rtl">منطقه فرهنگی تیاکاهو</span>
+                <h3>Zone A: Tiacauh Cultural Area</h3>
+                <p><strong>ティアカウ部族保護区：</strong>現地の豊かな部族文化を尊重してください。現在、伝統的な「物理的対話（決闘）」の季節となっており、観光目的での部族への接近・接触は極めて危険です。</p>
             </div>
             <div class="card">
-                <span class="sargon-sub" dir="rtl">عرشه بقایا</span>
-                <h3>Sector B: Relic Deck</h3>
-                <p><strong>"Big Ugly" Wreckage Observation Point:</strong> Remains of a previously active colossal machine. Some tribespeople are currently attempting modifications. Approach with extreme caution.</p>
+                <span class="sargon-sub" dir="rtl">سایت میراث تاریخی</span>
+                <h3>Zone B: Historical Heritage Site</h3>
+                <p><strong>歴史的遺物保護区：</strong>過去の巨大機械『ビッグ・アグリー』の保存エリアです。無断での部品の持ち帰りや改造の試みは、サルゴン文化財保護法により厳しく罰せられます。</p>
             </div>
             <div class="card">
-                <span class="sargon-sub" dir="rtl">منطقه فعال جهش‌یافته</span>
-                <h3>Sector C: Active Zone</h3>
-                <p><strong>Originium-Mutated Flora Sector:</strong> Colony of carnivorous plants mutated by high concentrations of Active Originium. Class-4 (or higher) protective gear is strictly mandated.</p>
+                <span class="sargon-sub" dir="rtl">منطقه حفاظت شده اکولوژیکی</span>
+                <h3>Zone C: Ecological Preservation</h3>
+                <p><strong>生態系保護区：</strong>希少な源石変異植物の群生地です。周辺は高濃度のオリジニウム放射線に覆われているため、民間向けの自然見学ツアーは現在すべて見合わせとなっております。</p>
             </div>
         </div>
     </section>
@@ -314,7 +312,7 @@
 <div class="footer">
     <span class="sargon-text" style="color: #555; font-size: 0.85rem;" dir="rtl">کمیته حفاظت از آکاهوالا</span>
     <p>TERRA YEAR 109X © Acahualla Preservation Committee | Assisted by R.I. Ecological Dept.</p>
-    <p>Originium Density: 0.38u/L | Threat Level: HAZARDOUS</p>
+    <p>Originium Density: 0.38u/L | Public Alert Level: ORANGE</p>
 </div>
 
 <script>
