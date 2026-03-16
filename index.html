@@ -17,7 +17,6 @@
         }
 
         body {
-            /* JSで言語ごとにフォントを切り替えます */
             background-color: var(--bg-dark);
             margin: 0;
             color: var(--text-main);
@@ -31,10 +30,9 @@
             top: 15px;
             right: 20px;
             display: flex;
-            gap: 5px;
+            gap: 8px;
             z-index: 100;
         }
-        /* RTL時の配置調整 */
         body[dir="rtl"] .lang-switcher {
             right: auto;
             left: 20px;
@@ -44,9 +42,9 @@
             background: rgba(0,0,0,0.6);
             border: 1px solid var(--alert-orange);
             color: var(--alert-orange);
-            padding: 5px 10px;
+            padding: 6px 12px;
             cursor: pointer;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             font-family: 'Courier New', Courier, monospace;
             font-weight: bold;
             transition: 0.2s;
@@ -125,13 +123,14 @@
 
         /* エイプリルフール用ネタばらしバナー */
         #april-fools-notice {
-            display: none; /* デフォルトは非表示 */
             background-color: rgba(0, 152, 220, 0.1);
             border: 1px solid var(--rhodes-blue);
-            border-left: 5px solid var(--rhodes-blue);
+            /* RTLとLTRでボーダー位置を変えないよう両端に設定 */
+            border-left: 4px solid var(--rhodes-blue);
+            border-right: 4px solid var(--rhodes-blue);
             color: #fff;
             padding: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             font-size: 0.9rem;
             line-height: 1.5;
             backdrop-filter: blur(5px);
@@ -140,7 +139,6 @@
         .alert-box {
             background-color: rgba(245, 166, 35, 0.05);
             border: 1px solid rgba(245, 166, 35, 0.3);
-            /* RTLとLTRでボーダー位置を変えないよう両端に設定 */
             border-left: 4px solid var(--alert-orange);
             border-right: 4px solid var(--alert-orange);
             padding: 20px;
@@ -213,7 +211,6 @@
             border: 1px solid var(--alert-orange);
             z-index: 2;
         }
-        /* RTL/LTRでのタグ位置調整 */
         body[dir="ltr"] .carousel-tag { right: 10px; }
         body[dir="rtl"] .carousel-tag { left: 10px; }
 
@@ -242,7 +239,6 @@
             backdrop-filter: blur(2px);
         }
         .carousel-btn:hover { background-color: var(--rhodes-blue); color: #fff; }
-        /* RTL/LTRのボタン位置調整 */
         body[dir="ltr"] .prev-btn { left: -10px; }
         body[dir="ltr"] .next-btn { right: -10px; }
         body[dir="rtl"] .prev-btn { right: -10px; transform: translateY(-50%) rotate(180deg); }
@@ -279,14 +275,17 @@
             .alert-box { padding: 15px;}
             .carousel-card { flex: 0 0 90%; } 
             .carousel-btn { width: 30px; height: 30px; font-size: 1rem; }
+            .lang-btn { padding: 4px 8px; font-size: 0.75rem; }
         }
     </style>
 </head>
-<body dir="rtl"> <header>
+<body dir="rtl">
+
+<header>
     <div class="lang-switcher">
-        <button class="lang-btn active" data-lang="fa">FA</button>
-        <button class="lang-btn" data-lang="en">EN</button>
-        <button class="lang-btn" data-lang="ja">JA</button>
+        <button class="lang-btn active" data-lang="fa">فارسی</button>
+        <button class="lang-btn" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="ja">日本語</button>
     </div>
     <div class="gov-banner" data-i18n="banner">اداره اراضی سارگون</div>
     <h1 data-i18n="title">منطقه حفاظت‌شده آکاهوالا</h1>
@@ -298,7 +297,7 @@
 
 <div class="container">
     
-    <div id="april-fools-notice"></div>
+    <div id="april-fools-notice" data-i18n="aprilFools"></div>
 
     <div class="alert-box">
         <h2 data-i18n="alertTitle">هشدار به شهروندان: محیط خطرناک</h2>
@@ -383,7 +382,8 @@
             banner: 'اداره اراضی سارگون',
             title: 'منطقه حفاظت‌شده آکاهوالا',
             heroSub: '// قلب سبز نفوذناپذیر ترا.',
-            aprilFools: '',
+            // ペルシャ語のエイプリルフール表記（ロドス・アイランド所属ドクター各位〜）
+            aprilFools: '⚠️ <strong>【خارج از طبقه‌بندی / به تمامی دکترهای رودز آیلند】</strong><br>این سایت یک پورتال خیالی برای دروغ اول آوریل است و هیچ ارتباطی با سازمان‌های واقعی یا تنظیمات رسمی بازی "آرکنایتس" ندارد.',
             alertTitle: 'هشدار به شهروندان: محیط خطرناک',
             alertText: 'این منطقه حفاظت شده طبیعی دارای محیط‌های بسیار فعال اوریجینیوم است. برای ایمنی شما، گردشگری عمومی و ورود غیرمجاز غیرنظامیان اکیداً <strong>ممنوع</strong> است. ورود فقط به پیام‌رسان‌های فاجعه مجاز و پرسنل تایید شده رودز آیلند محدود می‌شود.',
             alertStamp: 'ورود غیرنظامیان ممنوع',
@@ -414,7 +414,8 @@
             banner: 'Sargon Territorial Administration',
             title: 'ACAHUALLA PRIMEVAL RESERVE',
             heroSub: '// The impenetrable green heart of Terra.',
-            aprilFools: '',
+            // 英語のエイプリルフール表記
+            aprilFools: '⚠️ <strong>【DECLASSIFIED / Attention Rhodes Island Doctors】</strong><br>This site is a fictional portal created for April Fool\'s Day. It is not affiliated with any real organizations or the official Arknights game.',
             alertTitle: 'PUBLIC ADVISORY: HAZARDOUS ENVIRONMENT',
             alertText: 'This natural reserve contains highly active Originium environments. For your safety, general tourism and unauthorized civilian access are strictly <strong>PROHIBITED</strong>. Entry is limited to licensed Catastrophe Messengers and certified Rhodes Island personnel only.',
             alertStamp: 'CIVILIAN ACCESS RESTRICTED',
@@ -477,52 +478,36 @@
         const prevBtn = document.querySelector('.prev-btn');
         const nextBtn = document.querySelector('.next-btn');
 
-        // 言語変更関数
         function setLanguage(lang) {
-            // ボタンのアクティブ状態切り替え
             document.querySelectorAll('.lang-btn').forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.dataset.lang === lang) btn.classList.add('active');
             });
 
-            // RTL(右から左) / LTR(左から右) の切り替え
             document.body.dir = i18nData[lang].dir;
             document.body.style.fontFamily = i18nData[lang].font;
 
-            // テキストの入れ替え
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (i18nData[lang][key]) {
                     el.innerHTML = i18nData[lang][key];
                 }
             });
-
-            // 日本語時のみエイプリルフール表記を表示
-            const afNotice = document.getElementById('april-fools-notice');
-            if (lang === 'ja') {
-                afNotice.style.display = 'block';
-                afNotice.innerHTML = i18nData.ja.aprilFools;
-            } else {
-                afNotice.style.display = 'none';
-            }
         }
 
         // 初期言語設定（ペルシャ語）
         setLanguage('fa');
 
-        // 言語ボタンのクリックイベント
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', (e) => setLanguage(e.target.dataset.lang));
         });
 
-        // カルーセルのスクロール制御
         function getScrollAmount() {
             const card = document.querySelector('.carousel-card');
             return card ? card.offsetWidth + 15 : 300;
         }
 
         nextBtn.addEventListener('click', function() {
-            // RTLの時はスクロール方向が逆転するため判定を調整
             const isRTL = document.body.dir === 'rtl';
             if(isRTL) {
                 carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
