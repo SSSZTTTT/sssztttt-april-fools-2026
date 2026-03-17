@@ -6,31 +6,33 @@
     <title>Acahualla Primeval Reserve - Sargon Territorial Admin</title>
     <style>
         :root {
-            --bg-dark: #121212;
-            --bg-panel: #1e1e1e;
-            --text-main: #d4d4d4;
-            --rhodes-blue: #0098dc;
-            --alert-orange: #f5a623;
-            --sargon-green: #2e4a3d;
-            --border-line: #333;
-            --text-muted: #888;
+            /* 政府の公式ウェブサイト風の配色（ライトテーマ） */
+            --bg-light: #fcfbf9; /* 背景：明るいサンドベージュ */
+            --bg-panel: #ffffff; /* パネル：純白 */
+            --text-main: #2c3e50; /* テキスト：濃いグレー（真っ黒より品がある） */
+            --sargon-green: #1b4332; /* メインカラー：深い密林の緑 */
+            --sargon-gold: #b0891d; /* アクセント：サルゴンの王室ゴールド */
+            --alert-red: #c0392b; /* 警告色：少し暗い赤 */
+            --alert-bg: #fdf2f0; /* 警告の背景：薄い赤 */
+            --border-line: #e0dcd3; /* 境界線：落ち着いたグレーベージュ */
+            --text-muted: #666666;
         }
 
         body {
-            background-color: var(--bg-dark);
+            background-color: var(--bg-light);
             margin: 0;
             color: var(--text-main);
             line-height: 1.6;
             transition: all 0.3s ease;
         }
 
-        /* === 言語切り替えボタン === */
+        /* === 言語切り替えボタン（お役所風の堅いデザインに） === */
         .lang-switcher {
             position: absolute;
             top: 15px;
             right: 20px;
             display: flex;
-            gap: 8px;
+            gap: 5px;
             z-index: 100;
         }
         body[dir="rtl"] .lang-switcher {
@@ -39,80 +41,86 @@
         }
 
         .lang-btn {
-            background: rgba(0,0,0,0.6);
-            border: 1px solid var(--alert-orange);
-            color: var(--alert-orange);
-            padding: 6px 12px;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.5);
+            color: #fff;
+            padding: 4px 12px;
             cursor: pointer;
-            font-size: 0.85rem;
-            font-family: 'Courier New', Courier, monospace;
-            font-weight: bold;
+            font-size: 0.8rem;
+            font-family: 'Times New Roman', Times, serif;
             transition: 0.2s;
         }
         .lang-btn.active, .lang-btn:hover {
-            background: var(--alert-orange);
-            color: #000;
+            background: #fff;
+            color: var(--sargon-green);
+            font-weight: bold;
         }
 
         .sargon-sub {
-            color: var(--text-muted);
+            color: var(--sargon-gold);
             font-size: 0.85rem;
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
         }
 
+        /* ヘッダー：深い緑色でお堅い政府機関を表現 */
         header {
-            background-color: #080808;
+            background-color: var(--sargon-green);
             color: white;
             padding: 35px 20px 20px;
             text-align: center;
-            border-bottom: 3px solid var(--alert-orange);
+            border-bottom: 5px solid var(--sargon-gold);
             position: relative;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 4px;
-            background: linear-gradient(90deg, var(--bg-dark) 0%, var(--alert-orange) 50%, var(--bg-dark) 100%);
         }
 
         .gov-banner {
             font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 4px;
-            color: var(--text-muted);
+            color: #d1d5db;
             display: inline-block;
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding-bottom: 4px;
+            margin-bottom: 10px;
         }
 
         header h1 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             margin: 5px 0 0 0;
-            font-weight: 800;
-            letter-spacing: 3px;
+            font-weight: normal;
+            letter-spacing: 2px;
             color: #fff;
         }
 
+        .sargon-text {
+            color: var(--sargon-gold);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
         .hero {
-            background-color: #000;
+            background-color: var(--sargon-green);
             color: white;
             padding: 100px 20px;
             text-align: center;
-            background-image: linear-gradient(rgba(18, 18, 18, 0.7), rgba(18, 18, 18, 0.9)), url('https://drive.google.com/thumbnail?id=1MAO83-D97JncfT6a-olrg9ocAHbtK1kY&sz=w1200');
+            background-image: linear-gradient(rgba(27, 67, 50, 0.6), rgba(27, 67, 50, 0.8)), url('https://drive.google.com/thumbnail?id=1MAO83-D97JncfT6a-olrg9ocAHbtK1kY&sz=w1200');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            border-bottom: 1px solid var(--border-line);
+            border-bottom: 4px solid var(--sargon-green);
         }
 
         .hero p {
             font-size: 1.2rem; 
             font-weight: 300; 
-            letter-spacing: 4px;
-            color: var(--text-muted);
+            letter-spacing: 2px;
+            color: #f3f4f6;
             text-transform: uppercase;
             margin: 0;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
         }
 
         .container {
@@ -121,44 +129,43 @@
             padding: 20px;
         }
 
-        /* エイプリルフール用ネタばらしバナー */
+        /* エイプリルフール用ネタばらしバナー（公的機関のお知らせ風） */
         #april-fools-notice {
-            background-color: rgba(0, 152, 220, 0.1);
-            border: 1px solid var(--rhodes-blue);
-            border-left: 4px solid var(--rhodes-blue);
-            border-right: 4px solid var(--rhodes-blue);
-            color: #fff;
+            background-color: #eef2f5;
+            border: 1px solid #cbd5e1;
+            border-left: 5px solid var(--sargon-green);
+            border-right: 5px solid var(--sargon-green);
+            color: var(--text-main);
             padding: 15px;
             margin-bottom: 25px;
             font-size: 0.9rem;
             line-height: 1.5;
-            backdrop-filter: blur(5px);
         }
 
+        /* 警告ボックス：目立つように白背景の上に配置 */
         .alert-box {
-            background-color: rgba(245, 166, 35, 0.05);
-            border: 1px solid rgba(245, 166, 35, 0.3);
-            border-left: 4px solid var(--alert-orange);
-            border-right: 4px solid var(--alert-orange);
+            background-color: var(--alert-bg);
+            border: 1px solid #f5c6cb;
+            border-left: 5px solid var(--alert-red);
+            border-right: 5px solid var(--alert-red);
             padding: 20px;
             margin: -20px auto 30px;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .alert-box h2 {
-            color: var(--alert-orange);
+            color: var(--alert-red);
             margin-top: 0;
             font-size: 1.2rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             border: none;
             padding: 0;
         }
 
         .section-title {
-            border-bottom: 2px solid var(--border-line);
+            border-bottom: 2px solid var(--sargon-green);
             padding-bottom: 10px;
             margin-top: 40px;
             margin-bottom: 20px;
@@ -166,8 +173,8 @@
         .section-title h2 {
             margin: 0;
             font-size: 1.4rem;
-            color: var(--rhodes-blue);
-            font-weight: 600;
+            color: var(--sargon-green);
+            font-weight: normal;
             letter-spacing: 1px;
             text-transform: uppercase;
         }
@@ -184,12 +191,12 @@
             gap: 15px;
             padding-bottom: 15px;
             scrollbar-width: thin;
-            scrollbar-color: var(--rhodes-blue) var(--bg-dark);
+            scrollbar-color: var(--sargon-green) var(--border-line);
             scroll-behavior: smooth;
         }
-        .carousel::-webkit-scrollbar { height: 4px; }
-        .carousel::-webkit-scrollbar-track { background: var(--bg-dark); }
-        .carousel::-webkit-scrollbar-thumb { background-color: var(--rhodes-blue); border-radius: 2px; }
+        .carousel::-webkit-scrollbar { height: 6px; }
+        .carousel::-webkit-scrollbar-track { background: var(--bg-light); }
+        .carousel::-webkit-scrollbar-thumb { background-color: var(--sargon-green); border-radius: 3px; }
         
         .carousel-card {
             scroll-snap-align: center;
@@ -197,97 +204,93 @@
             max-width: 400px;
             background: var(--bg-panel);
             border: 1px solid var(--border-line);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
             position: relative;
         }
         
         .carousel-tag {
             position: absolute;
             top: 10px; 
-            background: rgba(0,0,0,0.8);
-            color: var(--alert-orange);
-            font-size: 0.65rem;
+            background: rgba(255,255,255,0.9);
+            color: var(--sargon-green);
+            font-size: 0.7rem;
             padding: 3px 8px;
-            border: 1px solid var(--alert-orange);
+            border: 1px solid var(--sargon-green);
             z-index: 2;
+            font-weight: bold;
         }
         body[dir="ltr"] .carousel-tag { right: 10px; }
         body[dir="rtl"] .carousel-tag { left: 10px; }
 
-        .carousel-card img { width: 100%; height: 220px; object-fit: cover; display: block; opacity: 0.7; filter: grayscale(30%); transition: 0.3s; }
-        .carousel-card img:hover { opacity: 1; filter: grayscale(0%); }
+        .carousel-card img { width: 100%; height: 220px; object-fit: cover; display: block; }
         .carousel-card .caption { 
-            padding: 12px 15px; font-size: 0.85rem; color: #fff; 
-            border-top: 2px solid var(--sargon-green); 
-            background: #111;
+            padding: 12px 15px; font-size: 0.9rem; color: var(--text-main); 
+            border-top: 1px solid var(--border-line); 
+            background: var(--bg-panel);
+            font-weight: bold;
         }
 
         .carousel-btn {
             position: absolute;
             top: 40%; 
             transform: translateY(-50%);
-            background-color: rgba(0, 152, 220, 0.1); 
-            color: var(--rhodes-blue);
-            border: 1px solid var(--rhodes-blue);
-            width: 35px;
-            height: 35px;
+            background-color: #fff; 
+            color: var(--sargon-green);
+            border: 1px solid var(--border-line);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
             font-size: 1.2rem;
             cursor: pointer;
             z-index: 10;
             display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
             transition: all 0.2s;
-            backdrop-filter: blur(2px);
         }
-        .carousel-btn:hover { background-color: var(--rhodes-blue); color: #fff; }
-        body[dir="ltr"] .prev-btn { left: -10px; }
-        body[dir="ltr"] .next-btn { right: -10px; }
-        body[dir="rtl"] .prev-btn { right: -10px; transform: translateY(-50%) rotate(180deg); }
-        body[dir="rtl"] .next-btn { left: -10px; transform: translateY(-50%) rotate(180deg); }
+        .carousel-btn:hover { background-color: var(--sargon-green); color: #fff; border-color: var(--sargon-green); }
+        body[dir="ltr"] .prev-btn { left: -15px; }
+        body[dir="ltr"] .next-btn { right: -15px; }
+        body[dir="rtl"] .prev-btn { right: -15px; transform: translateY(-50%) rotate(180deg); }
+        body[dir="rtl"] .next-btn { left: -15px; transform: translateY(-50%) rotate(180deg); }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 15px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
         .card { 
             background: var(--bg-panel); 
             padding: 20px; 
             border: 1px solid var(--border-line); 
-            border-top: 3px solid var(--sargon-green); 
+            border-top: 4px solid var(--sargon-green); 
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
             transition: transform 0.2s;
         }
-        .card:hover { transform: translateY(-2px); border-top-color: var(--rhodes-blue); }
-        .card h3 { color: #fff; border-bottom: 1px dashed var(--border-line); padding-bottom: 10px; margin-top: 0; font-weight: normal; font-size: 1.1rem; text-transform: uppercase;}
-        .card p { font-size: 0.85rem; color: #bbb; margin-bottom: 0; }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+        .card h3 { color: var(--sargon-green); border-bottom: 1px dotted var(--border-line); padding-bottom: 10px; margin-top: 0; font-weight: normal; font-size: 1.2rem; }
+        .card p { font-size: 0.95rem; color: var(--text-muted); margin-bottom: 0; }
 
         .footer { 
-            background-color: #050505; 
-            color: #555; 
+            background-color: #e5e0d8; 
+            color: var(--text-muted); 
             text-align: center; 
             padding: 40px 20px; 
-            font-size: 0.75rem; 
+            font-size: 0.8rem; 
             margin-top: 60px; 
-            border-top: 1px solid #222; 
-            text-transform: uppercase;
+            border-top: 1px solid var(--border-line); 
         }
-        .stamp { border: 2px solid var(--alert-orange); color: var(--alert-orange); display: inline-block; padding: 4px 12px; font-weight: bold; margin: 15px 0 5px; letter-spacing: 2px; font-size: 0.8rem; }
+        .stamp { border: 2px solid var(--alert-red); color: var(--alert-red); display: inline-block; padding: 4px 12px; font-weight: bold; margin: 15px 0 5px; letter-spacing: 2px; font-size: 0.8rem; transform: rotate(-2deg); }
 
         /* === スマホ向けレイアウト調整 === */
         @media screen and (max-width: 600px) {
-            /* ヘッダーの余白を増やしてボタンと文字の被りを防ぐ */
             header { padding-top: 65px; } 
-            
-            /* 言語切り替えボタンを中央に配置 */
             .lang-switcher, 
             body[dir="rtl"] .lang-switcher { 
-                left: 0; 
-                right: 0; 
-                justify-content: center; 
-                width: 100%;
+                left: 0; right: 0; justify-content: center; width: 100%;
             }
             .lang-btn { padding: 4px 10px; font-size: 0.8rem; }
-
-            header h1 { font-size: 1.4rem; }
+            header h1 { font-size: 1.6rem; }
             .hero { padding: 60px 15px; background-attachment: scroll; background-position: center 25%; }
-            .hero p { font-size: 0.9rem; }
+            .hero p { font-size: 1rem; }
             .alert-box { padding: 15px;}
             .carousel-card { flex: 0 0 90%; } 
-            .carousel-btn { width: 30px; height: 30px; font-size: 1rem; }
+            .carousel-btn { width: 35px; height: 35px; font-size: 1rem; }
         }
     </style>
 </head>
@@ -299,12 +302,13 @@
         <button class="lang-btn" data-lang="en">English</button>
         <button class="lang-btn" data-lang="ja">日本語</button>
     </div>
-    <div class="gov-banner" data-i18n="banner">اداره اراضی سارگون</div>
+    <span class="sargon-text" dir="rtl" data-i18n="sargonTop">اداره اراضی سارگون</span>
+    <div class="gov-banner" data-i18n="banner">Sargon Territorial Administration</div>
     <h1 data-i18n="title">منطقه حفاظت‌شده آکاهوالا</h1>
 </header>
 
 <div class="hero">
-    <p data-i18n="heroSub">// قلب سبز نفوذناپذیر ترا.</p>
+    <p data-i18n="heroSub">" قلب سبز نفوذناپذیر ترا "</p>
 </div>
 
 <div class="container">
@@ -381,7 +385,7 @@
 </div>
 
 <div class="footer">
-    <span class="sargon-sub" style="color: #555;" data-i18n="foot1">کمیته حفاظت از آکاهوالا</span>
+    <span class="sargon-sub" style="color: #666;" data-i18n="foot1">کمیته حفاظت از آکاهوالا</span>
     <p data-i18n="foot2">سال ترا 109X © کمیته حفاظت از آکاهوالا | با همکاری بخش اکولوژی رودز آیلند</p>
     <p data-i18n="foot3">چگالی اوریجینیوم: 0.38u/L | سطح هشدار عمومی: نارنجی</p>
 </div>
@@ -391,9 +395,10 @@
         fa: {
             dir: 'rtl',
             font: "'Tahoma', 'Arial', sans-serif",
-            banner: 'اداره اراضی سارگون',
+            sargonTop: 'اداره اراضی سارگون',
+            banner: 'Sargon Territorial Administration',
             title: 'منطقه حفاظت‌شده آکاهوالا',
-            heroSub: '// قلب سبز نفوذناپذیر ترا.',
+            heroSub: '" قلب سبز نفوذناپذیر ترا "',
             aprilFools: '⚠️ <strong>【خارج از طبقه‌بندی / به تمامی دکترهای رودز آیلند】</strong><br>این سایت یک پورتال خیالی برای دروغ اول آوریل است و هیچ ارتباطی با سازمان‌های واقعی یا تنظیمات رسمی بازی "آرکنایتس" ندارد.',
             alertTitle: 'هشدار به شهروندان: محیط خطرناک',
             alertText: 'این منطقه حفاظت شده طبیعی دارای محیط‌های بسیار فعال اوریجینیوم است. برای ایمنی شما، گردشگری عمومی و ورود غیرمجاز غیرنظامیان اکیداً <strong>ممنوع</strong> است. ورود فقط به پیام‌رسان‌های فاجعه مجاز و پرسنل تایید شده رودز آیلند محدود می‌شود.',
@@ -422,9 +427,10 @@
         en: {
             dir: 'ltr',
             font: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-            banner: 'Sargon Territorial Administration',
+            sargonTop: 'Sargon Territorial Administration',
+            banner: 'Ministry of Environment and Nature',
             title: 'ACAHUALLA PRIMEVAL RESERVE',
-            heroSub: '// The impenetrable green heart of Terra.',
+            heroSub: '"The impenetrable green heart of Terra."',
             aprilFools: '⚠️ <strong>【DECLASSIFIED / Attention Rhodes Island Doctors】</strong><br>This site is a fictional portal created for April Fool\'s Day. It is not affiliated with any real organizations or the official Arknights game.',
             alertTitle: 'PUBLIC ADVISORY: HAZARDOUS ENVIRONMENT',
             alertText: 'This natural reserve contains highly active Originium environments. For your safety, general tourism and unauthorized civilian access are strictly <strong>PROHIBITED</strong>. Entry is limited to licensed Catastrophe Messengers and certified Rhodes Island personnel only.',
@@ -452,10 +458,11 @@
         },
         ja: {
             dir: 'ltr',
-            font: "'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-            banner: 'サルゴン領土管理局',
+            font: "'Noto Sans JP', 'Segoe UI', sans-serif",
+            sargonTop: 'サルゴン領土管理局',
+            banner: '環境・自然保護省',
             title: 'アカフラ原生保護区',
-            heroSub: '// テラの浸透不可能な緑の心臓',
+            heroSub: '「テラの浸透不可能な緑の心臓」',
             aprilFools: '⚠️ <strong>【機密指定解除 / ロドス・アイランド所属ドクター各位】</strong><br>このサイトはエイプリルフール用の架空のポータルサイトです。実在の組織や、ゲーム「アークナイツ」の公式設定とは一切関係ありません。',
             alertTitle: '市民への警告：高濃度汚染区域',
             alertText: '当自然保護区には高濃度の活性源石環境が含まれています。皆様の安全のため、一般の観光や無許可の民間人の立ち入りは固く<strong>禁じられています</strong>。立ち入りは認可されたトランスポーターおよびロドス・アイランドの正規職員のみに限られます。',
