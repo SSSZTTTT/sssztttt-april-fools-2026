@@ -35,15 +35,15 @@
             font-family: 'Tahoma', 'Arial', sans-serif;
         }
 
-        /* === 言語切り替えボタン（位置・並び順を完全固定） === */
+        /* === 言語切り替えボタン === */
         .lang-switcher {
             position: absolute;
             top: 15px;
-            right: 20px; /* 常に右側に固定 */
+            right: 20px;
             display: flex;
             gap: 5px;
             z-index: 100;
-            direction: ltr; /* テキスト方向がRTLになっても、ボタンの並び順はLTR(左から右)に固定 */
+            direction: ltr; 
         }
 
         .lang-btn {
@@ -214,7 +214,6 @@
             font-family: 'Roboto Condensed', sans-serif;
         }
 
-        /* === カルーセル（写真のみに最適化） === */
         .carousel-container {
             width: 100%;
             margin-bottom: 50px; 
@@ -344,13 +343,23 @@
             letter-spacing: 1px;
         }
 
+        /* === スマホ向けレイアウトのギュッと圧縮 === */
         @media screen and (max-width: 600px) {
-            header { padding-top: 70px; } 
+            header { 
+                padding-top: 50px; /* 余白を大幅カット */
+                padding-bottom: 15px;
+            } 
             .lang-switcher { 
+                top: 10px; /* ボタン位置も少し上へ */
                 left: 0; right: 0; justify-content: center; width: 100%; gap: 3px;
             }
             .lang-btn { padding: 4px 10px; font-size: 0.75rem; }
-            header h1 { font-size: 1.6rem; }
+            
+            /* タイトル周りの間隔を詰める */
+            .sargon-text { margin-bottom: 0px; font-size: 0.9rem; }
+            .gov-banner { margin-bottom: 0px; font-size: 0.65rem; }
+            header h1 { font-size: 1.5rem; margin-top: 2px; }
+
             .hero { padding: 80px 15px; background-attachment: scroll; background-position: center 25%; }
             .hero p { font-size: 1.1rem; letter-spacing: 2px; }
             .alert-box { padding: 20px; margin-top: -30px;}
@@ -449,7 +458,7 @@
 <div class="footer">
     <span class="sargon-text" style="color: #bbb; font-size: 0.9rem;" dir="rtl">کمیته حفاظت از آکاهوالا</span>
     <p data-i18n="foot1">TERRA YEAR 109X © Acahualla Preservation Committee</p>
-    <p data-i18n="foot2">Assisted by Rhodes Island Ecological Dept.</p>
+    <p data-i18n="foot2">Assisted by Rhodes Island Ecological Dept. | Originium Density: 0.38u/L</p>
 </div>
 
 <script>
@@ -461,7 +470,7 @@
             banner: 'اداره کل محیط زیست و طبیعت',
             title: 'منطقه حفاظت‌شده آکاهوالا',
             heroSub: '// " قلب سبز نفوذناپذیر ترا "',
-            aprilFools: '⚠️ <strong>【به تمامی دکترهای رودز آیلند】</strong><br>این سایت یک پورتال خیالی برای دروغ اول آوریل است و هیچ ارتباطی با سازمان‌های واقعی یا تنظیمات رسمی بازی "آرکنایتس" ندارد.',
+            aprilFools: '⚠️ <strong>【خارج از طبقه‌بندی / به تمامی دکترهای رودز آیلند】</strong><br>این سایت یک پورتال خیالی برای دروغ اول آوریل است و هیچ ارتباطی با سازمان‌های واقعی یا تنظیمات رسمی بازی "آرکنایتس" ندارد.',
             alertTitle: 'هشدار به شهروندان: محیط خطرناک',
             alertText: 'این منطقه حفاظت شده طبیعی دارای محیط‌های بسیار فعال اوریجینیوم است. برای ایمنی شما، گردشگری عمومی و ورود غیرمجاز غیرنظامیان اکیداً <strong>ممنوع</strong> است. ورود فقط به پیام‌رسان‌های فاجعه مجاز و پرسنل تایید شده رودز آیلند محدود می‌شود.',
             galleryTitle: 'گالری',
