@@ -242,7 +242,6 @@
             border: 1px solid var(--border-line);
             position: relative;
             transition: all 0.3s ease;
-            /* 写真だけなので、下部にもGlowing borderを追加して額縁っぽく */
             border-bottom: 3px solid var(--sargon-green);
         }
         .carousel-card:hover {
@@ -267,7 +266,6 @@
         body[dir="ltr"] .carousel-tag { right: 0; clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%, 0 30%); }
         body[dir="rtl"] .carousel-tag { left: 0; clip-path: polygon(0 0, 90% 0, 100% 30%, 100% 100%, 0 100%); }
 
-        /* キャプション削除に伴い、画像がカード全体に広がるように高さを調整 */
         .carousel-card img { width: 100%; height: 260px; object-fit: cover; display: block; filter: grayscale(10%); transition: 0.3s; }
         .carousel-card img:hover { filter: grayscale(0%); }
 
@@ -451,7 +449,7 @@
 <div class="footer">
     <span class="sargon-text" style="color: #bbb; font-size: 0.9rem;" dir="rtl">کمیته حفاظت از آکاهوالا</span>
     <p data-i18n="foot1">TERRA YEAR 109X © Acahualla Preservation Committee</p>
-    <p data-i18n="foot2">Assisted by Rhodes Island Ecological Dept. | Originium Density: 0.38u/L</p>
+    <p data-i18n="foot2">Assisted by Rhodes Island Ecological Dept.</p>
 </div>
 
 <script>
@@ -463,22 +461,22 @@
             banner: 'اداره کل محیط زیست و طبیعت',
             title: 'منطقه حفاظت‌شده آکاهوالا',
             heroSub: '// " قلب سبز نفوذناپذیر ترا "',
-            aprilFools: '⚠️ <strong>【خارج از طبقه‌بندی / به تمامی دکترهای رودز آیلند】</strong><br>این سایت یک پورتال خیالی برای دروغ اول آوریل است و هیچ ارتباطی با سازمان‌های واقعی یا تنظیمات رسمی بازی "آرکنایتس" ندارد.',
+            aprilFools: '⚠️ <strong>【به تمامی دکترهای رودز آیلند】</strong><br>این سایت یک پورتال خیالی برای دروغ اول آوریل است و هیچ ارتباطی با سازمان‌های واقعی یا تنظیمات رسمی بازی "آرکنایتس" ندارد.',
             alertTitle: 'هشدار به شهروندان: محیط خطرناک',
             alertText: 'این منطقه حفاظت شده طبیعی دارای محیط‌های بسیار فعال اوریجینیوم است. برای ایمنی شما، گردشگری عمومی و ورود غیرمجاز غیرنظامیان اکیداً <strong>ممنوع</strong> است. ورود فقط به پیام‌رسان‌های فاجعه مجاز و پرسنل تایید شده رودز آیلند محدود می‌شود.',
-            galleryTitle: 'گالری رسمی',
+            galleryTitle: 'گالری',
             infoTitle: 'اطلاعات بازدیدکنندگان و مناطق',
             zoneASub: 'منطقه فرهنگی تیاکاهو',
             zoneATitle: 'منطقه الف: منطقه فرهنگی تیاکاهو',
             zoneAText: '<strong>ذخیره‌گاه قبیله‌ای تیاکاهو:</strong> لطفاً به فرهنگ غنی قبیله‌ای محلی احترام بگذارید. در حال حاضر فصل "گفتگوی فیزیکی" (دوئل) سنتی است. نزدیک شدن به قبایل برای مقاصد گردشگری بسیار خطرناک است.',
             zoneBSub: 'سایت میراث تاریخی',
             zoneBTitle: 'منطقه ب: سایت میراث تاریخی',
-            zoneBText: '<strong>ذخیره‌گاه آثار تاریخی:</strong> منطقه حفاظت برای ماشین عظیم الجثه گذشته، "بیگ آگلی". برداشتن غیرمجاز قطعات یا تلاش برای اصلاح، تحت قوانین حفاظت از فرهنگ سارگون به شدت مجازات خواهد شد.',
+            zoneBText: '<strong>ذخیره‌گاه آثار تاریخی:</strong> منطقه حفاظت برای ماشین عظیم الجثه "بیگ آگلی". برداشتن غیرمجاز قطعات یا تلاش برای اصلاح، تحت قوانین حفاظت از فرهنگ سارگون به شدت مجازات خواهد شد.',
             zoneCSub: 'حفاظت اکولوژیکی',
             zoneCTitle: 'منطقه ج: حفاظت اکولوژیکی',
-            zoneCText: '<strong>منطقه حفاظت شده اکولوژیکی:</strong> زیستگاه گیاهان جهش‌یافته نادر اوریجینیوم. به دلیل غلظت بالای تشعشعات اوریجینیوم فعال در مجاورت، تمام تورهای طبیعت‌گردی غیرنظامی در حال حاضر به حالت تعلیق درآده‌اند.',
-            foot1: 'سال ترا 109X © کمیته حفاظت از آکاهوالا',
-            foot2: 'با همکاری بخش اکولوژی رودز آیلند | چگالی اوریجینیوم: 0.38u/L',
+            zoneCText: '<strong>منطقه حفاظت شده اکولوژیکی:</strong> زیستگاه گیاهان نادر. تمام تورهای طبیعت‌گردی غیرنظامی در حال حاضر به حالت تعلیق درآمده‌اند.',
+            foot1: '© کمیته حفاظت از آکاهوالا',
+            foot2: 'با همکاری بخش اکولوژی رودز آیلند',
             tag: 'نمایش عمومی'
         },
         en: {
@@ -488,22 +486,22 @@
             banner: 'Department of Environment and Nature',
             title: 'ACAHUALLA PRIMEVAL RESERVE',
             heroSub: '// "The impenetrable green heart of Terra."',
-            aprilFools: '⚠️ <strong>【DECLASSIFIED / Attention Rhodes Island Doctors】</strong><br>This site is a fictional portal created for April Fool\'s Day. It is not affiliated with any real organizations or the official Arknights game.',
+            aprilFools: '⚠️ <strong>【Attention Rhodes Island Doctors】</strong><br>This site is a fictional portal created for April Fool\'s Day. It is not affiliated with any real organizations or the official Arknights game.',
             alertTitle: 'PUBLIC ADVISORY: HAZARDOUS ENVIRONMENT',
             alertText: 'This natural reserve contains highly active Originium environments. For your safety, general tourism and unauthorized civilian access are strictly <strong>PROHIBITED</strong>. Entry is limited to licensed Catastrophe Messengers and certified Rhodes Island personnel only.',
-            galleryTitle: 'Official Gallery',
+            galleryTitle: 'Gallery',
             infoTitle: 'Visitor Information & Zones',
             zoneASub: 'Tiacauh Cultural Area',
             zoneATitle: 'Zone A: Tiacauh Cultural Area',
             zoneAText: '<strong>Tiacauh Tribal Reserve:</strong> Please respect the rich local tribal culture. It is currently the season of traditional "physical dialogue" (duels). Approaching or attempting contact with the tribes for tourism purposes is extremely dangerous.',
             zoneBSub: 'Historical Heritage Site',
             zoneBTitle: 'Zone B: Historical Heritage Site',
-            zoneBText: '<strong>Historical Relic Reserve:</strong> Preservation area for the colossal machine of the past, "Big Ugly". Unauthorized removal of parts or attempts at modification will be severely punished under Sargon Cultural Protection Laws.',
+            zoneBText: '<strong>Historical Relic Reserve:</strong> Preservation area for the colossal machine "Big Ugly". Unauthorized removal of parts or attempts at modification will be severely punished under Sargon Cultural Protection Laws.',
             zoneCSub: 'Ecological Preservation',
             zoneCTitle: 'Zone C: Ecological Preservation',
-            zoneCText: '<strong>Ecological Preservation Area:</strong> Habitat for rare Originium-mutated flora. Due to high concentrations of active Originium radiation in the vicinity, all civilian nature tours are currently suspended indefinitely.',
-            foot1: 'TERRA YEAR 109X © Acahualla Preservation Committee',
-            foot2: 'Assisted by Rhodes Island Ecological Dept. | Originium Density: 0.38u/L',
+            zoneCText: '<strong>Ecological Preservation Area:</strong> Habitat for rare flora. All civilian nature tours are currently suspended indefinitely.',
+            foot1: '© Acahualla Preservation Committee',
+            foot2: 'Assisted by Rhodes Island Ecological Dept.',
             tag: 'PUBLIC VIEW'
         },
         ja: {
@@ -513,22 +511,22 @@
             banner: '環境・自然保護省',
             title: 'アカフラ原生保護区',
             heroSub: '// 「テラの浸透不可能な緑の心臓」',
-            aprilFools: '⚠️ <strong>【機密指定解除 / ロドス・アイランド所属ドクター各位】</strong><br>このサイトはエイプリルフール用の架空のポータルサイトです。実在の組織や、ゲーム「アークナイツ」の公式設定とは一切関係ありません。',
+            aprilFools: '⚠️ <strong>【ロドス・アイランド所属ドクター各位】</strong><br>このサイトはエイプリルフール用の架空のポータルサイトです。実在の組織や、ゲーム「アークナイツ」の公式設定とは一切関係ありません。',
             alertTitle: '市民への警告：高濃度汚染区域',
             alertText: '当自然保護区には高濃度の活性源石環境が含まれています。皆様の安全のため、一般の観光や無許可の民間人の立ち入りは固く<strong>禁じられています</strong>。立ち入りは認可されたトランスポーターおよびロドス・アイランドの正規職員のみに限られます。',
-            galleryTitle: '公式ギャラリー',
+            galleryTitle: 'ギャラリー',
             infoTitle: '訪問者情報と区画',
             zoneASub: 'ティアカウ文化保護区',
             zoneATitle: '区画A：ティアカウ文化保護区',
             zoneAText: '<strong>ティアカウ部族保護区：</strong>現地の豊かな部族文化を尊重してください。現在、伝統的な「物理的対話（決闘）」の季節となっており、観光目的での部族への接近・接触は極めて危険です。',
             zoneBSub: '歴史遺産保護区',
             zoneBTitle: '区画B：歴史遺産保護区',
-            zoneBText: '<strong>歴史的遺物保護区：</strong>過去の巨大機械『ビッグ・アグリー』の保存エリアです。無断での部品の持ち帰りや改造の試みは、サルゴン文化財保護法により厳しく罰せられます。',
+            zoneBText: '<strong>歴史的遺物保護区：</strong>巨大機械『ビッグ・アグリー』の保存エリアです。無断での部品の持ち帰りや改造の試みは、サルゴン文化財保護法により厳しく罰せられます。',
             zoneCSub: '生態系保護区',
             zoneCTitle: '区画C：生態系保護区',
-            zoneCText: '<strong>生態系保護区：</strong>希少な源石変異植物の群生地です。周辺は高濃度のオリジニウム放射線に覆われているため、民間向けの自然見学ツアーは現在すべて見合わせとなっております。',
-            foot1: 'テラ暦 109X © アカフラ保全委員会',
-            foot2: '協力：ロドス・アイランド環境調査室 | オリジニウム濃度: 0.38u/L',
+            zoneCText: '<strong>生態系保護区：</strong>希少な植物の群生地です。民間向けの自然見学ツアーは現在すべて見合わせとなっております。',
+            foot1: '© アカフラ保全委員会',
+            foot2: '協力：ロドス・アイランド環境調査室',
             tag: '公開展示'
         }
     };
