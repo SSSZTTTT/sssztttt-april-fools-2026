@@ -1,443 +1,605 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acahualla Primeval Reserve - Sargon Territorial Admin</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-light: #f4f4f2;
-            --bg-panel: #ffffff;
-            --text-main: #1a1a1a;
-            --sargon-green: #1b4332;
-            --rhodes-blue: #0098dc;
-            --alert-orange: #f5a623;
-            --border-line: #e0e0e0;
-            --text-muted: #888888;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acahualla Primeval Reserve - Sargon Territorial Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-light: #f4f4f2;
+            --bg-panel: #ffffff;
+            --text-main: #1a1a1a;
+            --sargon-green: #1b4332;
+            --rhodes-blue: #0098dc;
+            --alert-orange: #f5a623;
+            --border-line: #e0e0e0;
+            --text-muted: #888888;
+        }
 
-        /* === 言語に応じたフォント切り替え（CSSに集約） === */
-        html:lang(en) body { font-family: 'Roboto', 'Segoe UI', sans-serif; }
-        html:lang(ja) body { font-family: 'Roboto', 'Segoe UI', 'Noto Sans JP', sans-serif; }
-        html:lang(fa) body { font-family: 'Tahoma', 'Arial', sans-serif; }
+        body {
+            font-family: 'Roboto', 'Segoe UI', sans-serif;
+            background-color: var(--bg-light);
+            margin: 0;
+            color: var(--text-main);
+            line-height: 1.6;
+            transition: all 0.3s ease;
+            background-image: linear-gradient(rgba(224, 224, 224, 0.2) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(224, 224, 224, 0.2) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
 
-        body {
-            background-color: var(--bg-light);
-            margin: 0;
-            color: var(--text-main);
-            line-height: 1.6;
-            transition: all 0.3s ease;
-            background-image: linear-gradient(rgba(224, 224, 224, 0.2) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(224, 224, 224, 0.2) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
+        [lang="fa"] body, body[dir="rtl"] {
+            font-family: 'Tahoma', 'Arial', sans-serif;
+        }
 
-        /* === 言語切り替えボタン === */
-        .lang-switcher {
-            position: absolute; top: 15px; right: 20px; display: flex;
-            gap: 5px; z-index: 100; direction: ltr; 
-        }
-        .lang-btn {
-            background: rgba(255,255,255,0.7); border: 1px solid var(--border-line);
-            color: var(--sargon-green); padding: 5px 14px; cursor: pointer;
-            font-size: 0.8rem; font-family: 'Roboto Condensed', sans-serif;
-            font-weight: bold; text-transform: uppercase; border-radius: 20px;
-            transition: 0.2s; backdrop-filter: blur(5px);
-        }
-        .lang-btn.active, .lang-btn:hover {
-            background: var(--sargon-green); color: #fff;
-            border-color: var(--sargon-green); box-shadow: 0 0 10px rgba(27, 67, 50, 0.3);
-        }
+        /* === 言語切り替えボタン === */
+        .lang-switcher {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            display: flex;
+            gap: 5px;
+            z-index: 100;
+            direction: ltr; 
+        }
 
-        .sargon-sub {
-            color: var(--sargon-green); font-size: 0.85rem; display: block;
-            margin-bottom: 5px; font-weight: bold; font-family: 'Roboto Condensed', sans-serif;
-            text-transform: uppercase; letter-spacing: 1px;
-        }
+        .lang-btn {
+            background: rgba(255,255,255,0.7);
+            border: 1px solid var(--border-line);
+            color: var(--sargon-green);
+            padding: 5px 14px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            border-radius: 20px;
+            transition: 0.2s;
+            backdrop-filter: blur(5px);
+        }
+        .lang-btn.active, .lang-btn:hover {
+            background: var(--sargon-green);
+            color: #fff;
+            border-color: var(--sargon-green);
+            box-shadow: 0 0 10px rgba(27, 67, 50, 0.3);
+        }
 
-        header {
-            background-color: var(--bg-panel); color: var(--sargon-green);
-            padding: 30px 20px 20px; text-align: center; border-bottom: 1px solid var(--border-line);
-            position: relative; box-shadow: 0 2px 10px rgba(0,0,0,0.03);
-        }
-        header::before {
-            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: var(--alert-orange);
-        }
-        .gov-banner {
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px;
-            color: var(--text-muted); display: inline-block; margin-bottom: 5px;
-        }
-        header h1 {
-            font-size: 2.2rem; margin-top: 5px; font-weight: 700;
-            letter-spacing: 2px; color: var(--sargon-green); font-family: 'Roboto Condensed', sans-serif;
-        }
-        .sargon-text {
-            color: var(--alert-orange); font-size: 1rem; letter-spacing: 1px; margin-bottom: 5px; display: block;
-        }
+        .sargon-sub {
+            color: var(--sargon-green);
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-family: 'Roboto Condensed', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-        .hero {
-            background-color: #000; color: white; padding: 120px 20px; text-align: center;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('https://drive.google.com/thumbnail?id=1MAO83-D97JncfT6a-olrg9ocAHbtK1kY&sz=w1200');
-            background-size: cover; background-position: center; background-attachment: fixed;
-            border-bottom: 1px solid var(--border-line);
-        }
-        .hero p {
-            font-size: 1.4rem; font-weight: 300; letter-spacing: 3px; color: #fff;
-            text-transform: uppercase; margin: 0; font-family: 'Roboto Condensed', sans-serif;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
+        header {
+            background-color: var(--bg-panel);
+            color: var(--sargon-green);
+            padding: 30px 20px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-line);
+            position: relative;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
 
-        .container { max-width: 950px; margin: 0 auto; padding: 30px 20px; }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: var(--alert-orange);
+        }
 
-        #april-fools-notice {
-            background-color: rgba(0, 152, 220, 0.05); border: 1px solid rgba(0, 152, 220, 0.2);
-            border-left: 4px solid var(--rhodes-blue); color: var(--text-main);
-            padding: 18px; margin-bottom: 30px; font-size: 0.9rem; line-height: 1.5;
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 98% 100%, 0 100%);
-        }
+        .gov-banner {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--text-muted);
+            display: inline-block;
+            margin-bottom: 5px;
+        }
 
-        .alert-box {
-            background-color: var(--bg-panel); border: 1px solid var(--border-line);
-            border-left: 4px solid var(--alert-orange); padding: 25px; margin: -50px auto 40px;
-            position: relative; box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-            clip-path: polygon(0 0, 97% 0, 100% 3%, 100% 100%, 0 100%);
-        }
-        .alert-box h2 {
-            color: var(--alert-orange); margin-top: 0; font-size: 1.3rem;
-            text-transform: uppercase; letter-spacing: 2px; font-family: 'Roboto Condensed', sans-serif;
-        }
-        .alert-box p { font-weight: 300; color: #444; }
+        header h1 {
+            font-size: 2.2rem;
+            margin: 5px 0 0 0;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--sargon-green);
+            font-family: 'Roboto Condensed', sans-serif;
+        }
 
-        .section-title {
-            border-bottom: 1px solid var(--border-line); padding-bottom: 10px;
-            margin-top: 50px; margin-bottom: 25px; position: relative;
-        }
-        .section-title::before {
-            content: ''; position: absolute; bottom: -1px; left: 0;
-            width: 50px; height: 3px; background-color: var(--rhodes-blue);
-        }
-        html[dir="rtl"] .section-title::before { left: auto; right: 0; }
+        .sargon-text {
+            color: var(--alert-orange);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            display: block;
+        }
 
-        .section-title h2 {
-            margin: 0; font-size: 1.5rem; color: var(--sargon-green);
-            font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-            font-family: 'Roboto Condensed', sans-serif;
-        }
+        .hero {
+            background-color: #000;
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('https://drive.google.com/thumbnail?id=1MAO83-D97JncfT6a-olrg9ocAHbtK1kY&sz=w1200');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            border-bottom: 1px solid var(--border-line);
+        }
 
-        .carousel-container { width: 100%; margin-bottom: 50px; position: relative; }
-        .carousel {
-            display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 20px;
-            padding-bottom: 20px; scrollbar-width: thin; scrollbar-color: var(--border-line) var(--bg-light); scroll-behavior: smooth;
-        }
-        .carousel::-webkit-scrollbar { height: 4px; }
-        .carousel::-webkit-scrollbar-track { background: var(--bg-light); }
-        .carousel::-webkit-scrollbar-thumb { background-color: var(--border-line); border-radius: 2px; }
+        .hero p {
+            font-size: 1.4rem; 
+            font-weight: 300; 
+            letter-spacing: 3px;
+            color: #fff;
+            text-transform: uppercase;
+            margin: 0;
+            font-family: 'Roboto Condensed', sans-serif;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
 
-        .carousel-card {
-            scroll-snap-align: center; flex: 0 0 85%; max-width: 400px;
-            background: var(--bg-panel); border: 1px solid var(--border-line);
-            position: relative; transition: all 0.3s ease; border-bottom: 3px solid var(--sargon-green);
-        }
-        .carousel-card:hover {
-            transform: translateY(-5px); border-color: var(--rhodes-blue);
-            border-bottom-color: var(--rhodes-blue); box-shadow: 0 10px 25px rgba(0, 152, 220, 0.1);
-        }
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
 
-        .carousel-tag {
-            position: absolute; top: 0; background: rgba(27, 67, 50, 0.9);
-            color: #fff; font-size: 0.7rem; padding: 4px 10px; z-index: 2;
-            font-family: 'Roboto Condensed', sans-serif; text-transform: uppercase; font-weight: bold;
-        }
-        html[dir="ltr"] .carousel-tag { right: 0; clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%, 0 30%); }
-        html[dir="rtl"] .carousel-tag { left: 0; clip-path: polygon(0 0, 90% 0, 100% 30%, 100% 100%, 0 100%); }
+        #april-fools-notice {
+            background-color: rgba(0, 152, 220, 0.05);
+            border: 1px solid rgba(0, 152, 220, 0.2);
+            border-left: 4px solid var(--rhodes-blue);
+            color: var(--text-main);
+            padding: 18px;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 98% 100%, 0 100%);
+        }
 
-        .carousel-card img { width: 100%; height: 260px; object-fit: cover; display: block; filter: grayscale(10%); transition: 0.3s; }
-        .carousel-card img:hover { filter: grayscale(0%); }
+        .alert-box {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-line);
+            border-left: 4px solid var(--alert-orange);
+            padding: 25px;
+            margin: -50px auto 40px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            clip-path: polygon(0 0, 97% 0, 100% 3%, 100% 100%, 0 100%);
+        }
 
-        .carousel-btn {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background-color: rgba(255,255,255,0.8); color: var(--sargon-green);
-            border: 1px solid var(--border-line); width: 45px; height: 45px; border-radius: 50%;
-            font-size: 1.2rem; cursor: pointer; z-index: 10; display: flex; align-items: center;
-            justify-content: center; transition: all 0.2s; backdrop-filter: blur(3px); box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-        .carousel-btn:hover { background-color: var(--sargon-green); color: #fff; border-color: var(--sargon-green); box-shadow: 0 5px 15px rgba(27, 67, 50, 0.2); }
-        html[dir="ltr"] .prev-btn { left: -15px; }
-        html[dir="ltr"] .next-btn { right: -15px; }
-        html[dir="rtl"] .prev-btn { right: -15px; transform: translateY(-50%) rotate(180deg); }
-        html[dir="rtl"] .next-btn { left: -15px; transform: translateY(-50%) rotate(180deg); }
+        .alert-box h2 {
+            color: var(--alert-orange);
+            margin-top: 0;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Roboto Condensed', sans-serif;
+            border: none;
+            padding: 0;
+        }
+        .alert-box p {
+            font-weight: 300;
+            color: #444;
+        }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 25px; }
-        .card { 
-            background: var(--bg-panel); padding: 25px; border: 1px solid var(--border-line); 
-            border-top: 3px solid var(--border-line); transition: all 0.3s ease; position: relative;
-        }
-        .card:hover { transform: translateY(-5px); border-top-color: var(--rhodes-blue); box-shadow: 0 15px 35px rgba(0,0,0,0.05); }
+        .section-title {
+            border-bottom: 1px solid var(--border-line);
+            padding-bottom: 10px;
+            margin-top: 50px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .section-title::before {
+            content: '';
+            position: absolute;
+            bottom: -1px; left: 0;
+            width: 50px; height: 3px;
+            background-color: var(--rhodes-blue);
+        }
+        body[dir="rtl"] .section-title::before { left: auto; right: 0; }
 
-        .card::after {
-            content: 'OBS-Z'; position: absolute; top: 10px; right: 15px;
-            font-family: 'Roboto Condensed', sans-serif; font-size: 0.65rem; color: var(--text-muted); letter-spacing: 1px;
-        }
-        html[dir="rtl"] .card::after { right: auto; left: 15px; }
+        .section-title h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            color: var(--sargon-green);
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
 
-        .card h3 { 
-            color: var(--sargon-green); border-bottom: 1px dashed var(--border-line); padding-bottom: 12px; 
-            margin-top: 5px; font-weight: 700; font-size: 1.2rem; text-transform: uppercase; font-family: 'Roboto Condensed', sans-serif;
-        }
-        .card p { font-size: 0.9rem; color: #555; font-weight: 300; }
+        .carousel-container {
+            width: 100%;
+            margin-bottom: 50px; 
+            position: relative; 
+        }
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 20px;
+            padding-bottom: 20px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--border-line) var(--bg-light);
+            scroll-behavior: smooth;
+        }
+        .carousel::-webkit-scrollbar { height: 4px; }
+        .carousel::-webkit-scrollbar-track { background: var(--bg-light); }
+        .carousel::-webkit-scrollbar-thumb { background-color: var(--border-line); border-radius: 2px; }
+        
+        .carousel-card {
+            scroll-snap-align: center;
+            flex: 0 0 85%;
+            max-width: 400px;
+            background: var(--bg-panel);
+            border: 1px solid var(--border-line);
+            position: relative;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid var(--sargon-green);
+        }
+        .carousel-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--rhodes-blue);
+            border-bottom-color: var(--rhodes-blue);
+            box-shadow: 0 10px 25px rgba(0, 152, 220, 0.1);
+        }
+        
+        .carousel-tag {
+            position: absolute;
+            top: 0; 
+            background: rgba(27, 67, 50, 0.9);
+            color: #fff;
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            z-index: 2;
+            font-family: 'Roboto Condensed', sans-serif;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        body[dir="ltr"] .carousel-tag { right: 0; clip-path: polygon(10% 0, 100% 0, 100% 100%, 0 100%, 0 30%); }
+        body[dir="rtl"] .carousel-tag { left: 0; clip-path: polygon(0 0, 90% 0, 100% 30%, 100% 100%, 0 100%); }
 
-        .footer { 
-            background-color: var(--bg-panel); color: var(--text-muted); text-align: center; padding: 50px 20px; 
-            font-size: 0.8rem; margin-top: 80px; border-top: 1px solid var(--border-line); text-transform: uppercase; 
-            font-family: 'Roboto Condensed', sans-serif; letter-spacing: 1px;
-        }
+        .carousel-card img { width: 100%; height: 260px; object-fit: cover; display: block; filter: grayscale(10%); transition: 0.3s; }
+        .carousel-card img:hover { filter: grayscale(0%); }
 
-        /* === スマホ向けレイアウト === */
-        @media screen and (max-width: 600px) {
-            header { padding-top: 50px; padding-bottom: 15px; } 
-            .lang-switcher { top: 10px; left: 0; right: 0; justify-content: center; width: 100%; gap: 3px; }
-            .lang-btn { padding: 4px 10px; font-size: 0.75rem; }
-            .sargon-text { margin-bottom: 0px; font-size: 0.9rem; }
-            .gov-banner { margin-bottom: 0px; font-size: 0.65rem; }
-            header h1 { font-size: 1.5rem; margin-top: 2px; }
-            .hero { padding: 80px 15px; background-attachment: scroll; background-position: center 25%; }
-            .hero p { font-size: 1.1rem; letter-spacing: 2px; }
-            .alert-box { padding: 20px; margin-top: -30px;}
-            .carousel-card { flex: 0 0 92%; gap: 10px;} 
-            .carousel-btn { width: 38px; height: 38px; font-size: 1rem; }
-        }
-    </style>
+        .carousel-btn {
+            position: absolute;
+            top: 50%; 
+            transform: translateY(-50%);
+            background-color: rgba(255,255,255,0.8); 
+            color: var(--sargon-green);
+            border: 1px solid var(--border-line);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            z-index: 10;
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.2s;
+            backdrop-filter: blur(3px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .carousel-btn:hover { background-color: var(--sargon-green); color: #fff; border-color: var(--sargon-green); box-shadow: 0 5px 15px rgba(27, 67, 50, 0.2); }
+        body[dir="ltr"] .prev-btn { left: -15px; }
+        body[dir="ltr"] .next-btn { right: -15px; }
+        body[dir="rtl"] .prev-btn { right: -15px; transform: translateY(-50%) rotate(180deg); }
+        body[dir="rtl"] .next-btn { left: -15px; transform: translateY(-50%) rotate(180deg); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 25px; }
+        .card { 
+            background: var(--bg-panel); 
+            padding: 25px; 
+            border: 1px solid var(--border-line); 
+            border-top: 3px solid var(--border-line); 
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .card:hover { 
+            transform: translateY(-5px); 
+            border-top-color: var(--rhodes-blue); 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+        }
+        
+        .card::after {
+            content: 'OBS-Z';
+            position: absolute;
+            top: 10px; right: 15px;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+        body[dir="rtl"] .card::after { right: auto; left: 15px; }
+
+        .card h3 { 
+            color: var(--sargon-green); 
+            border-bottom: 1px dashed var(--border-line); 
+            padding-bottom: 12px; 
+            margin-top: 5px; 
+            font-weight: 700; 
+            font-size: 1.2rem; 
+            text-transform: uppercase;
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+        .card p { font-size: 0.9rem; color: #555; margin-bottom: 0; font-weight: 300;}
+
+        .footer { 
+            background-color: var(--bg-panel); 
+            color: var(--text-muted); 
+            text-align: center; 
+            padding: 50px 20px; 
+            font-size: 0.8rem; 
+            margin-top: 80px; 
+            border-top: 1px solid var(--border-line); 
+            text-transform: uppercase;
+            font-family: 'Roboto Condensed', sans-serif;
+            letter-spacing: 1px;
+        }
+
+        /* === スマホ向けレイアウトのギュッと圧縮 === */
+        @media screen and (max-width: 600px) {
+            header { 
+                padding-top: 50px; /* 余白を大幅カット */
+                padding-bottom: 15px;
+            } 
+            .lang-switcher { 
+                top: 10px; /* ボタン位置も少し上へ */
+                left: 0; right: 0; justify-content: center; width: 100%; gap: 3px;
+            }
+            .lang-btn { padding: 4px 10px; font-size: 0.75rem; }
+            
+            /* タイトル周りの間隔を詰める */
+            .sargon-text { margin-bottom: 0px; font-size: 0.9rem; }
+            .gov-banner { margin-bottom: 0px; font-size: 0.65rem; }
+            header h1 { font-size: 1.5rem; margin-top: 2px; }
+
+            .hero { padding: 80px 15px; background-attachment: scroll; background-position: center 25%; }
+            .hero p { font-size: 1.1rem; letter-spacing: 2px; }
+            .alert-box { padding: 20px; margin-top: -30px;}
+            .carousel-card { flex: 0 0 92%; gap: 10px;} 
+            .carousel-btn { width: 38px; height: 38px; font-size: 1rem; }
+        }
+    </style>
 </head>
-<body>
+<body dir="rtl">
 
 <header>
-    <div class="lang-switcher">
-        <button class="lang-btn active" data-lang="fa">فارسی</button>
-        <button class="lang-btn" data-lang="en">English</button>
-        <button class="lang-btn" data-lang="ja">日本語</button>
-    </div>
-    <span class="sargon-text" dir="rtl" data-i18n="sargonTop">اداره اراضی سارگون</span>
-    <div class="gov-banner" data-i18n="banner">Sargon Territorial Administration</div>
-    <h1 data-i18n="title">منطقه حفاظت‌شده آکاهوالا</h1>
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="fa">فارسی</button>
+        <button class="lang-btn" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="ja">日本語</button>
+    </div>
+    <span class="sargon-text" dir="rtl" data-i18n="sargonTop">اداره اراضی سارگون</span>
+    <div class="gov-banner" data-i18n="banner">Sargon Territorial Administration</div>
+    <h1 data-i18n="title">منطقه حفاظت‌شده آکاهوالا</h1>
 </header>
 
 <div class="hero">
-    <p data-i18n="heroSub">// " قلب سبز نفوذناپذیر ترا "</p>
+    <p data-i18n="heroSub">// " قلب سبز نفوذناپذیر ترا "</p>
 </div>
 
 <div class="container">
-    <div id="april-fools-notice" data-i18n="aprilFools"></div>
+    
+    <div id="april-fools-notice" data-i18n="aprilFools"></div>
 
-    <div class="alert-box">
-        <span class="sargon-text" dir="rtl">هشدار به شهروندان</span>
-        <h2 data-i18n="alertTitle">PUBLIC ADVISORY: HAZARDOUS ENVIRONMENT</h2>
-        <p data-i18n="alertText">This natural reserve contains highly active Originium environments. For your safety, general tourism and unauthorized civilian access are strictly <strong>PROHIBITED</strong>. Entry is limited to licensed Catastrophe Messengers and certified Rhodes Island personnel only.</p>
-    </div>
+    <div class="alert-box">
+        <span class="sargon-text" dir="rtl">هشدار به شهروندان</span>
+        <h2 data-i18n="alertTitle">PUBLIC ADVISORY: HAZARDOUS ENVIRONMENT</h2>
+        <p data-i18n="alertText">This natural reserve contains highly active Originium environments. For your safety, general tourism and unauthorized civilian access are strictly <strong>PROHIBITED</strong>. Entry is limited to licensed Catastrophe Messengers and certified Rhodes Island personnel only.</p>
+    </div>
 
-    <section>
-        <div class="section-title">
-            <span class="sargon-text" dir="rtl">گالری عمومی</span>
-            <h2 data-i18n="galleryTitle">Official Gallery</h2>
-        </div>
-        
-        <div class="carousel-container">
-            <button class="carousel-btn prev-btn">❮</button>
-            <div class="carousel" id="photoCarousel">
-                <div class="carousel-card">
-                    <div class="carousel-tag" data-i18n="tag">نمایش عمومی</div>
-                    <img src="https://drive.google.com/thumbnail?id=1xvIqkqIPAKFC1JUuooqiflvsjwCAiwNS&sz=w800" alt="Image 1">
-                </div>
-                <div class="carousel-card">
-                    <div class="carousel-tag" data-i18n="tag">نمایش عمومی</div>
-                    <img src="https://drive.google.com/thumbnail?id=1VkYl5CUUkhbWBLQOHWdxQyapIBuY1NH2&sz=w800" alt="Image 2">
-                </div>
-                <div class="carousel-card">
-                    <div class="carousel-tag" data-i18n="tag">نمایش عمومی</div>
-                    <img src="https://drive.google.com/thumbnail?id=1MR9eGLwHAr4Ot1dy2QLrlaHb2mLLCM5S&sz=w800" alt="Image 3">
-                </div>
-                <div class="carousel-card">
-                    <div class="carousel-tag" data-i18n="tag">نمایش عمومی</div>
-                    <img src="https://drive.google.com/thumbnail?id=1j98fzuj4-JEPG13u1HWPgc23i9nZhu_W&sz=w800" alt="Image 4">
-                </div>
-                <div class="carousel-card">
-                    <div class="carousel-tag" data-i18n="tag">نمایش عمومی</div>
-                    <img src="https://drive.google.com/thumbnail?id=1o_pI8UQMfNtnZyTaEaH0Y4992X51EWYr&sz=w800" alt="Image 5">
-                </div>
-            </div>
-            <button class="carousel-btn next-btn">❯</button>
-        </div>
-    </section>
+    <section>
+        <div class="section-title">
+            <span class="sargon-text" dir="rtl">گالری عمومی</span>
+            <h2 data-i18n="galleryTitle">Official Gallery</h2>
+        </div>
+        
+        <div class="carousel-container">
+            <button class="carousel-btn prev-btn">❮</button>
+            <div class="carousel" id="photoCarousel">
+                <div class="carousel-card">
+                    <div class="carousel-tag" data-i18n="tag">نمایش عمومی</div>
+                    <img src="https://drive.google.com/thumbnail?id=1xvIqkqIPAKFC1JUuooqiflvsjwCAiwNS&sz=w800" alt="Image 1">
+                </div>
+                <div class="carousel-card">
+                    <div class="carousel-tag" data-i18n="tag">نمایش عمومی</div>
+                    <img src="https://drive.google.com/thumbnail?id=1VkYl5CUUkhbWBLQOHWdxQyapIBuY1NH2&sz=w800" alt="Image 2">
+                </div>
+                <div class="carousel-card">
+                    <div class="carousel-tag" data-i18n="tag">نمایش عمومی</div>
+                    <img src="https://drive.google.com/thumbnail?id=1MR9eGLwHAr4Ot1dy2QLrlaHb2mLLCM5S&sz=w800" alt="Image 3">
+                </div>
+                <div class="carousel-card">
+                    <div class="carousel-tag" data-i18n="tag">نمایش عمومی</div>
+                    <img src="https://drive.google.com/thumbnail?id=1j98fzuj4-JEPG13u1HWPgc23i9nZhu_W&sz=w800" alt="Image 4">
+                </div>
+                <div class="carousel-card">
+                    <div class="carousel-tag" data-i18n="tag">نمایش عمومی</div>
+                    <img src="https://drive.google.com/thumbnail?id=1o_pI8UQMfNtnZyTaEaH0Y4992X51EWYr&sz=w800" alt="Image 5">
+                </div>
+            </div>
+            <button class="carousel-btn next-btn">❯</button>
+        </div>
+    </section>
 
-    <section>
-        <div class="section-title">
-            <span class="sargon-text" dir="rtl">اطلاعات بازدیدکنندگان</span>
-            <h2 data-i18n="infoTitle">Visitor Information & Zones</h2>
-        </div>
-        
-        <div class="grid">
-            <div class="card">
-                <span class="sargon-sub" dir="rtl">منطقه فرهنگی تیاکاهو</span>
-                <h3 data-i18n="zoneATitle">Zone A: Tiacauh Cultural Area</h3>
-                <p data-i18n="zoneAText"><strong>Tiacauh Tribal Reserve:</strong> Please respect the rich local tribal culture. It is currently the season of traditional "physical dialogue" (duels). Approaching or attempting contact with the tribes for tourism purposes is extremely dangerous.</p>
-            </div>
-            <div class="card">
-                <span class="sargon-sub" dir="rtl">سایت میراث تاریخی</span>
-                <h3 data-i18n="zoneBTitle">Zone B: Historical Heritage Site</h3>
-                <p data-i18n="zoneBText"><strong>Historical Relic Reserve:</strong> Preservation area for the colossal machine of the past, "Big Ugly". Unauthorized removal of parts or attempts at modification will be severely punished under Sargon Cultural Protection Laws.</p>
-            </div>
-            <div class="card">
-                <span class="sargon-sub" dir="rtl">منطقه حفاظت شده اکولوژیکی</span>
-                <h3 data-i18n="zoneCTitle">Zone C: Ecological Preservation</h3>
-                <p data-i18n="zoneCText"><strong>Ecological Preservation Area:</strong> Habitat for rare Originium-mutated flora. Due to high concentrations of active Originium radiation in the vicinity, all civilian nature tours are currently suspended indefinitely.</p>
-            </div>
-        </div>
-    </section>
+    <section>
+        <div class="section-title">
+            <span class="sargon-text" dir="rtl">اطلاعات بازدیدکنندگان</span>
+            <h2 data-i18n="infoTitle">Visitor Information & Zones</h2>
+        </div>
+        
+        <div class="grid">
+            <div class="card">
+                <span class="sargon-sub" dir="rtl">منطقه فرهنگی تیاکاهو</span>
+                <h3 data-i18n="zoneATitle">Zone A: Tiacauh Cultural Area</h3>
+                <p data-i18n="zoneAText"><strong>Tiacauh Tribal Reserve:</strong> Please respect the rich local tribal culture. It is currently the season of traditional "physical dialogue" (duels). Approaching or attempting contact with the tribes for tourism purposes is extremely dangerous.</p>
+            </div>
+            <div class="card">
+                <span class="sargon-sub" dir="rtl">سایت میراث تاریخی</span>
+                <h3 data-i18n="zoneBTitle">Zone B: Historical Heritage Site</h3>
+                <p data-i18n="zoneBText"><strong>Historical Relic Reserve:</strong> Preservation area for the colossal machine of the past, "Big Ugly". Unauthorized removal of parts or attempts at modification will be severely punished under Sargon Cultural Protection Laws.</p>
+            </div>
+            <div class="card">
+                <span class="sargon-sub" dir="rtl">منطقه حفاظت شده اکولوژیکی</span>
+                <h3 data-i18n="zoneCTitle">Zone C: Ecological Preservation</h3>
+                <p data-i18n="zoneCText"><strong>Ecological Preservation Area:</strong> Habitat for rare Originium-mutated flora. Due to high concentrations of active Originium radiation in the vicinity, all civilian nature tours are currently suspended indefinitely.</p>
+            </div>
+        </div>
+    </section>
 </div>
 
 <div class="footer">
-    <span class="sargon-text" style="color: #bbb; font-size: 0.9rem;" dir="rtl">کمیته حفاظت از آکاهوالا</span>
-    <p data-i18n="foot1">TERRA YEAR 109X © Acahualla Preservation Committee</p>
-    <p data-i18n="foot2">Assisted by Rhodes Island Ecological Dept. | Originium Density: 0.38u/L</p>
+    <span class="sargon-text" style="color: #bbb; font-size: 0.9rem;" dir="rtl">کمیته حفاظت از آکاهوالا</span>
+    <p data-i18n="foot1">TERRA YEAR 109X © Acahualla Preservation Committee</p>
+    <p data-i18n="foot2">Assisted by Rhodes Island Ecological Dept. | Originium Density: 0.38u/L</p>
 </div>
 
 <script>
-    const i18nData = {
-        fa: {
-            dir: 'rtl',
-            sargonTop: 'اداره اراضی سارگون',
-            banner: 'اداره کل محیط زیست و طبیعت',
-            title: 'منطقه حفاظت‌شده آکاهوالا',
-            heroSub: '// " قلب سبز نفوذناپذیر ترا "',
-            aprilFools: '⚠️ <strong>【خارج از طبقه‌بندی / به تمامی دکترهای رودز آیلند】</strong><br>این سایت یک پورتال خیالی برای دروغ اول آوریل است و هیچ ارتباطی با سازمان‌های واقعی یا تنظیمات رسمی بازی "آرکنایتس" ندارد.',
-            alertTitle: 'هشدار به شهروندان: محیط خطرناک',
-            alertText: 'این منطقه حفاظت شده طبیعی دارای محیط‌های بسیار فعال اوریجینیوم است. برای ایمنی شما، گردشگری عمومی و ورود غیرمجاز غیرنظامیان اکیداً <strong>ممنوع</strong> است. ورود فقط به پیام‌رسان‌های فاجعه مجاز و پرسنل تایید شده رودز آیلند محدود می‌شود.',
-            galleryTitle: 'گالری',
-            infoTitle: 'اطلاعات بازدیدکنندگان و مناطق',
-            zoneASub: 'منطقه فرهنگی تیاکاهو',
-            zoneATitle: 'منطقه الف: منطقه فرهنگی تیاکاهو',
-            zoneAText: '<strong>ذخیره‌گاه قبیله‌ای تیاکاهو:</strong> لطفاً به فرهنگ غنی قبیله‌ای محلی احترام بگذارید. در حال حاضر فصل "گفتگوی فیزیکی" (دوئل) سنتی است. نزدیک شدن به قبایل برای مقاصد گردشگری بسیار خطرناک است.',
-            zoneBSub: 'سایت میراث تاریخی',
-            zoneBTitle: 'منطقه ب: سایت میراث تاریخی',
-            zoneBText: '<strong>ذخیره‌گاه آثار تاریخی:</strong> منطقه حفاظت برای ماشین عظیم الجثه "بیگ آگلی". برداشتن غیرمجاز قطعات یا تلاش برای اصلاح، تحت قوانین حفاظت از فرهنگ سارگون به شدت مجازات خواهد شد.',
-            zoneCSub: 'حفاظت اکولوژیکی',
-            zoneCTitle: 'منطقه ج: حفاظت اکولوژیکی',
-            zoneCText: '<strong>منطقه حفاظت شده اکولوژیکی:</strong> زیستگاه گیاهان نادر. تمام تورهای طبیعت‌گردی غیرنظامی در حال حاضر به حالت تعلیق درآمده‌اند.',
-            foot1: '© کمیته حفاظت از آکاهوالا',
-            foot2: 'با همکاری بخش اکولوژی رودز آیلند',
-            tag: 'نمایش عمومی'
-        },
-        en: {
-            dir: 'ltr',
-            sargonTop: 'Sargon Territorial Administration',
-            banner: 'Department of Environment and Nature',
-            title: 'ACAHUALLA PRIMEVAL RESERVE',
-            heroSub: '// "The impenetrable green heart of Terra."',
-            aprilFools: '⚠️ <strong>【Attention Rhodes Island Doctors】</strong><br>This site is a fictional portal created for April Fool\'s Day. It is not affiliated with any real organizations or the official Arknights game.',
-            alertTitle: 'PUBLIC ADVISORY: HAZARDOUS ENVIRONMENT',
-            alertText: 'This natural reserve contains highly active Originium environments. For your safety, general tourism and unauthorized civilian access are strictly <strong>PROHIBITED</strong>. Entry is limited to licensed Catastrophe Messengers and certified Rhodes Island personnel only.',
-            galleryTitle: 'Gallery',
-            infoTitle: 'Visitor Information & Zones',
-            zoneASub: 'Tiacauh Cultural Area',
-            zoneATitle: 'Zone A: Tiacauh Cultural Area',
-            zoneAText: '<strong>Tiacauh Tribal Reserve:</strong> Please respect the rich local tribal culture. It is currently the season of traditional "physical dialogue" (duels). Approaching or attempting contact with the tribes for tourism purposes is extremely dangerous.',
-            zoneBSub: 'Historical Heritage Site',
-            zoneBTitle: 'Zone B: Historical Heritage Site',
-            zoneBText: '<strong>Historical Relic Reserve:</strong> Preservation area for the colossal machine "Big Ugly". Unauthorized removal of parts or attempts at modification will be severely punished under Sargon Cultural Protection Laws.',
-            zoneCSub: 'Ecological Preservation',
-            zoneCTitle: 'Zone C: Ecological Preservation',
-            zoneCText: '<strong>Ecological Preservation Area:</strong> Habitat for rare flora. All civilian nature tours are currently suspended indefinitely.',
-            foot1: '© Acahualla Preservation Committee',
-            foot2: 'Assisted by Rhodes Island Ecological Dept.',
-            tag: 'PUBLIC VIEW'
-        },
-        ja: {
-            dir: 'ltr',
-            sargonTop: 'サルゴン領土管理局',
-            banner: '環境・自然保護省',
-            title: 'アカフラ原生保護区',
-            heroSub: '// 「テラの浸透不可能な緑の心臓」',
-            aprilFools: '⚠️ <strong>【ロドス・アイランド所属ドクター各位】</strong><br>このサイトはエイプリルフール用の架空のポータルサイトです。実在の組織や、ゲーム「アークナイツ」の公式設定とは一切関係ありません。',
-            alertTitle: '市民への警告：高濃度汚染区域',
-            alertText: '当自然保護区には高濃度の活性源石環境が含まれています。皆様の安全のため、一般の観光や無許可の民間人の立ち入りは固く<strong>禁じられています</strong>。立ち入りは認可されたトランスポーターおよびロドス・アイランドの正規職員のみに限られます。',
-            galleryTitle: 'ギャラリー',
-            infoTitle: '訪問者情報と区画',
-            zoneASub: 'ティアカウ文化保護区',
-            zoneATitle: '区画A：ティアカウ文化保護区',
-            zoneAText: '<strong>ティアカウ部族保護区：</strong>現地の豊かな部族文化を尊重してください。現在、伝統的な「物理的対話（決闘）」の季節となっており、観光目的での部族への接近・接触は極めて危険です。',
-            zoneBSub: '歴史遺産保護区',
-            zoneBTitle: '区画B：歴史遺産保護区',
-            zoneBText: '<strong>歴史的遺物保護区：</strong>巨大機械『ビッグ・アグリー』の保存エリアです。無断での部品の持ち帰りや改造の試みは、サルゴン文化財保護法により厳しく罰せられます。',
-            zoneCSub: '生態系保護区',
-            zoneCTitle: '区画C：生態系保護区',
-            zoneCText: '<strong>生態系保護区：</strong>希少な植物の群生地です。民間向けの自然見学ツアーは現在すべて見合わせとなっております。',
-            foot1: '© アカフラ保全委員会',
-            foot2: '協力：ロドス・アイランド環境調査室',
-            tag: '公開展示'
-        }
-    };
+    const i18nData = {
+        fa: {
+            dir: 'rtl',
+            font: "'Tahoma', 'Arial', sans-serif",
+            sargonTop: 'اداره اراضی سارگون',
+            banner: 'اداره کل محیط زیست و طبیعت',
+            title: 'منطقه حفاظت‌شده آکاهوالا',
+            heroSub: '// " قلب سبز نفوذناپذیر ترا "',
+            aprilFools: '⚠️ <strong>【خارج از طبقه‌بندی / به تمامی دکترهای رودز آیلند】</strong><br>این سایت یک پورتال خیالی برای دروغ اول آوریل است و هیچ ارتباطی با سازمان‌های واقعی یا تنظیمات رسمی بازی "آرکنایتس" ندارد.',
+            alertTitle: 'هشدار به شهروندان: محیط خطرناک',
+            alertText: 'این منطقه حفاظت شده طبیعی دارای محیط‌های بسیار فعال اوریجینیوم است. برای ایمنی شما، گردشگری عمومی و ورود غیرمجاز غیرنظامیان اکیداً <strong>ممنوع</strong> است. ورود فقط به پیام‌رسان‌های فاجعه مجاز و پرسنل تایید شده رودز آیلند محدود می‌شود.',
+            galleryTitle: 'گالری',
+            infoTitle: 'اطلاعات بازدیدکنندگان و مناطق',
+            zoneASub: 'منطقه فرهنگی تیاکاهو',
+            zoneATitle: 'منطقه الف: منطقه فرهنگی تیاکاهو',
+            zoneAText: '<strong>ذخیره‌گاه قبیله‌ای تیاکاهو:</strong> لطفاً به فرهنگ غنی قبیله‌ای محلی احترام بگذارید. در حال حاضر فصل "گفتگوی فیزیکی" (دوئل) سنتی است. نزدیک شدن به قبایل برای مقاصد گردشگری بسیار خطرناک است.',
+            zoneBSub: 'سایت میراث تاریخی',
+            zoneBTitle: 'منطقه ب: سایت میراث تاریخی',
+            zoneBText: '<strong>ذخیره‌گاه آثار تاریخی:</strong> منطقه حفاظت برای ماشین عظیم الجثه "بیگ آگلی". برداشتن غیرمجاز قطعات یا تلاش برای اصلاح، تحت قوانین حفاظت از فرهنگ سارگون به شدت مجازات خواهد شد.',
+            zoneCSub: 'حفاظت اکولوژیکی',
+            zoneCTitle: 'منطقه ج: حفاظت اکولوژیکی',
+            zoneCText: '<strong>منطقه حفاظت شده اکولوژیکی:</strong> زیستگاه گیاهان نادر. تمام تورهای طبیعت‌گردی غیرنظامی در حال حاضر به حالت تعلیق درآمده‌اند.',
+            foot1: '© کمیته حفاظت از آکاهوالا',
+            foot2: 'با همکاری بخش اکولوژی رودز آیلند',
+            tag: 'نمایش عمومی'
+        },
+        en: {
+            dir: 'ltr',
+            font: "'Roboto', 'Segoe UI', sans-serif",
+            sargonTop: 'Sargon Territorial Administration',
+            banner: 'Department of Environment and Nature',
+            title: 'ACAHUALLA PRIMEVAL RESERVE',
+            heroSub: '// "The impenetrable green heart of Terra."',
+            aprilFools: '⚠️ <strong>【Attention Rhodes Island Doctors】</strong><br>This site is a fictional portal created for April Fool\'s Day. It is not affiliated with any real organizations or the official Arknights game.',
+            alertTitle: 'PUBLIC ADVISORY: HAZARDOUS ENVIRONMENT',
+            alertText: 'This natural reserve contains highly active Originium environments. For your safety, general tourism and unauthorized civilian access are strictly <strong>PROHIBITED</strong>. Entry is limited to licensed Catastrophe Messengers and certified Rhodes Island personnel only.',
+            galleryTitle: 'Gallery',
+            infoTitle: 'Visitor Information & Zones',
+            zoneASub: 'Tiacauh Cultural Area',
+            zoneATitle: 'Zone A: Tiacauh Cultural Area',
+            zoneAText: '<strong>Tiacauh Tribal Reserve:</strong> Please respect the rich local tribal culture. It is currently the season of traditional "physical dialogue" (duels). Approaching or attempting contact with the tribes for tourism purposes is extremely dangerous.',
+            zoneBSub: 'Historical Heritage Site',
+            zoneBTitle: 'Zone B: Historical Heritage Site',
+            zoneBText: '<strong>Historical Relic Reserve:</strong> Preservation area for the colossal machine "Big Ugly". Unauthorized removal of parts or attempts at modification will be severely punished under Sargon Cultural Protection Laws.',
+            zoneCSub: 'Ecological Preservation',
+            zoneCTitle: 'Zone C: Ecological Preservation',
+            zoneCText: '<strong>Ecological Preservation Area:</strong> Habitat for rare flora. All civilian nature tours are currently suspended indefinitely.',
+            foot1: '© Acahualla Preservation Committee',
+            foot2: 'Assisted by Rhodes Island Ecological Dept.',
+            tag: 'PUBLIC VIEW'
+        },
+        ja: {
+            dir: 'ltr',
+            font: "'Roboto', 'Segoe UI', 'Noto Sans JP', sans-serif",
+            sargonTop: 'サルゴン領土管理局',
+            banner: '環境・自然保護省',
+            title: 'アカフラ原生保護区',
+            heroSub: '// 「テラの浸透不可能な緑の心臓」',
+            aprilFools: '⚠️ <strong>【ロドス・アイランド所属ドクター各位】</strong><br>このサイトはエイプリルフール用の架空のポータルサイトです。実在の組織や、ゲーム「アークナイツ」の公式設定とは一切関係ありません。',
+            alertTitle: '市民への警告：高濃度汚染区域',
+            alertText: '当自然保護区には高濃度の活性源石環境が含まれています。皆様の安全のため、一般の観光や無許可の民間人の立ち入りは固く<strong>禁じられています</strong>。立ち入りは認可されたトランスポーターおよびロドス・アイランドの正規職員のみに限られます。',
+            galleryTitle: 'ギャラリー',
+            infoTitle: '訪問者情報と区画',
+            zoneASub: 'ティアカウ文化保護区',
+            zoneATitle: '区画A：ティアカウ文化保護区',
+            zoneAText: '<strong>ティアカウ部族保護区：</strong>現地の豊かな部族文化を尊重してください。現在、伝統的な「物理的対話（決闘）」の季節となっており、観光目的での部族への接近・接触は極めて危険です。',
+            zoneBSub: '歴史遺産保護区',
+            zoneBTitle: '区画B：歴史遺産保護区',
+            zoneBText: '<strong>歴史的遺物保護区：</strong>巨大機械『ビッグ・アグリー』の保存エリアです。無断での部品の持ち帰りや改造の試みは、サルゴン文化財保護法により厳しく罰せられます。',
+            zoneCSub: '生態系保護区',
+            zoneCTitle: '区画C：生態系保護区',
+            zoneCText: '<strong>生態系保護区：</strong>希少な植物の群生地です。民間向けの自然見学ツアーは現在すべて見合わせとなっております。',
+            foot1: '© アカフラ保全委員会',
+            foot2: '協力：ロドス・アイランド環境調査室',
+            tag: '公開展示'
+        }
+    };
 
-    document.addEventListener('DOMContentLoaded', function() {
-        const carousel = document.getElementById('photoCarousel');
-        const prevBtn = document.querySelector('.prev-btn');
-        const nextBtn = document.querySelector('.next-btn');
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.getElementById('photoCarousel');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
 
-        function setLanguage(lang) {
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.dataset.lang === lang);
-            });
+        function setLanguage(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) btn.classList.add('active');
+            });
 
-            document.documentElement.lang = lang;
-            document.documentElement.dir = i18nData[lang].dir;
+            document.body.dir = i18nData[lang].dir;
+            document.body.style.fontFamily = i18nData[lang].font;
 
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (i18nData[lang][key]) {
-                    el.innerHTML = i18nData[lang][key];
-                }
-            });
-        }
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18nData[lang][key]) {
+                    el.innerHTML = i18nData[lang][key];
+                }
+            });
+        }
 
-        setLanguage('fa');
+        setLanguage('fa');
 
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => setLanguage(e.target.dataset.lang));
-        });
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => setLanguage(e.target.dataset.lang));
+        });
 
-        function getScrollAmount() {
-            const card = document.querySelector('.carousel-card');
-            return card ? card.offsetWidth + 20 : 300; 
-        }
+        function getScrollAmount() {
+            const card = document.querySelector('.carousel-card');
+            return card ? card.offsetWidth + 20 : 300; 
+        }
 
-        nextBtn.addEventListener('click', function() {
-            const isRTL = document.documentElement.dir === 'rtl';
-            if(isRTL) {
-                carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
-            } else {
-                const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
-                if (Math.ceil(carousel.scrollLeft) >= maxScrollLeft - 5) {
-                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
-                } else {
-                    carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
-                }
-            }
-        });
+        nextBtn.addEventListener('click', function() {
+            const isRTL = document.body.dir === 'rtl';
+            if(isRTL) {
+                carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+            } else {
+                const maxScrollLeft = carousel.scrollWidth - carousel.clientWidth;
+                if (Math.ceil(carousel.scrollLeft) >= maxScrollLeft - 5) {
+                    carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+                }
+            }
+        });
 
-        prevBtn.addEventListener('click', function() {
-            const isRTL = document.documentElement.dir === 'rtl';
-            if(isRTL) {
-                carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
-            } else {
-                if (Math.floor(carousel.scrollLeft) <= 5) {
-                    carousel.scrollTo({ left: carousel.scrollWidth, behavior: 'smooth' });
-                } else {
-                    carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
-                }
-            }
-        });
-    });
+        prevBtn.addEventListener('click', function() {
+            const isRTL = document.body.dir === 'rtl';
+            if(isRTL) {
+                carousel.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+            } else {
+                if (Math.floor(carousel.scrollLeft) <= 5) {
+                    carousel.scrollTo({ left: carousel.scrollWidth, behavior: 'smooth' });
+                } else {
+                    carousel.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+                }
+            }
+        });
+    });
 </script>
 </body>
 </html>
